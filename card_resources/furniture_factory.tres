@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="CardBaseResource" load_steps=3 format=3 uid="uid://da6fjlsoone1i"]
+
+[ext_resource type="Texture2D" uid="uid://bo02c51vurfvf" path="res://assets/all_cards/furniture_factory.png" id="1_1lyau"]
+[ext_resource type="Script" path="res://card_resources/card_base_resource.gd" id="1_327ft"]
+
+[resource]
+script = ExtResource("1_327ft")
+card_name = "furniture factory"
+card_type = "IncomeCard"
+card_income_catergory = "Player"
+card_income_numbers = Array[int]([8])
+card_cost = 3
+card_tags = Array[int]([])
+income_amount = 3
+card_image = ExtResource("1_1lyau")

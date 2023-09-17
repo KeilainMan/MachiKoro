@@ -1,0 +1,11 @@
+{
+  "hidden_columns": {
+    "res://card_resources/": {
+      "resource_local_to_scene": true,
+      "resource_name": true
+    }
+  },
+  "recent_paths": [
+    "res://card_resources/"
+  ]
+}

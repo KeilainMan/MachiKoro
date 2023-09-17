@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="CardBaseResource" load_steps=3 format=3 uid="uid://13a7bvhlde0q"]
+
+[ext_resource type="Texture2D" uid="uid://cww4cts4h470h" path="res://assets/all_cards/dairy.png" id="1_gt0o3"]
+[ext_resource type="Script" path="res://card_resources/card_base_resource.gd" id="1_qvl2p"]
+
+[resource]
+script = ExtResource("1_qvl2p")
+card_name = "dairy"
+card_type = "IncomeCard"
+card_income_catergory = "Player"
+card_income_numbers = Array[int]([7])
+card_cost = 5
+card_tags = Array[int]([])
+income_amount = 3
+card_image = ExtResource("1_gt0o3")

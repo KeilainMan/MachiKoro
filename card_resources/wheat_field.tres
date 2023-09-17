@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="CardBaseResource" load_steps=3 format=3 uid="uid://cfem8vh1cil2e"]
+
+[ext_resource type="Script" path="res://card_resources/card_base_resource.gd" id="1_4w4b8"]
+[ext_resource type="Texture2D" uid="uid://b5b07cicl5dyo" path="res://assets/all_cards/wheat_field.png" id="1_5lu15"]
+
+[resource]
+script = ExtResource("1_4w4b8")
+card_name = "wheat field"
+card_type = "IncomeCard"
+card_income_catergory = "All"
+card_income_numbers = Array[int]([1])
+card_cost = 1
+card_tags = Array[int]([0])
+income_amount = 1
+card_image = ExtResource("1_5lu15")

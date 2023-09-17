@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="CardBaseResource" load_steps=3 format=3 uid="uid://pryd08ocxwbf"]
+
+[ext_resource type="Script" path="res://card_resources/card_base_resource.gd" id="1_4yc3c"]
+[ext_resource type="Texture2D" uid="uid://ci8wctdyutysy" path="res://assets/all_cards/mini_market.png" id="1_8cmdm"]
+
+[resource]
+script = ExtResource("1_4yc3c")
+card_name = "mini market"
+card_type = "IncomeCard"
+card_income_catergory = "Player"
+card_income_numbers = Array[int]([4])
+card_cost = 2
+card_tags = Array[int]([3])
+income_amount = 3
+card_image = ExtResource("1_8cmdm")

@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="CardBaseResource" load_steps=3 format=3 uid="uid://dwbjuiwlhsh7u"]
+
+[ext_resource type="Script" path="res://card_resources/card_base_resource.gd" id="1_cs2wv"]
+[ext_resource type="Texture2D" uid="uid://dftuiojkk5x7t" path="res://assets/all_cards/family_restaurant.png" id="1_fvyhp"]
+
+[resource]
+script = ExtResource("1_cs2wv")
+card_name = "family restaurant"
+card_type = "IncomeCard"
+card_income_catergory = "Enemys"
+card_income_numbers = Array[int]([9, 10])
+card_cost = 3
+card_tags = Array[int]([4])
+income_amount = 2
+card_image = ExtResource("1_fvyhp")

@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="CardBaseResource" load_steps=3 format=3 uid="uid://bgkgx513nxx0x"]
+
+[ext_resource type="Texture2D" uid="uid://cesp60yugxrfw" path="res://assets/all_cards/cafe.png" id="1_8ipuc"]
+[ext_resource type="Script" path="res://card_resources/card_base_resource.gd" id="1_wk1mf"]
+
+[resource]
+script = ExtResource("1_wk1mf")
+card_name = "cafe"
+card_type = "IncomeCard"
+card_income_catergory = "Enemys"
+card_income_numbers = Array[int]([3])
+card_cost = 2
+card_tags = Array[int]([4])
+income_amount = 1
+card_image = ExtResource("1_8ipuc")

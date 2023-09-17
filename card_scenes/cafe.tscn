@@ -1,0 +1,7 @@
+[gd_scene load_steps=3 format=3 uid="uid://dgqqyo1u7m3nb"]
+
+[ext_resource type="PackedScene" uid="uid://dn6d6o7px0ku6" path="res://card_scenes/card_base.tscn" id="1_xgfkt"]
+[ext_resource type="Resource" uid="uid://bgkgx513nxx0x" path="res://card_resources/cafe.tres" id="2_biqew"]
+
+[node name="CardBase" instance=ExtResource("1_xgfkt")]
+card_resource = ExtResource("2_biqew")

@@ -1,0 +1,42 @@
+[gd_scene load_steps=3 format=3 uid="uid://6my02lombpdw"]
+
+[ext_resource type="Script" path="res://main/main.gd" id="1_luafi"]
+[ext_resource type="PackedScene" uid="uid://cr1o71avvkoto" path="res://shop/shop_container.tscn" id="2_4g6ky"]
+
+[node name="Main" type="Node"]
+script = ExtResource("1_luafi")
+
+[node name="ShopDisplayLayer" type="CanvasLayer" parent="."]
+
+[node name="ShopContainer" parent="ShopDisplayLayer" instance=ExtResource("2_4g6ky")]
+offset_left = 693.0
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 30
+theme_override_constants/margin_bottom = 50
+
+[node name="InterfaceLayer" type="CanvasLayer" parent="."]
+
+[node name="MainMenuLayer" type="CanvasLayer" parent="."]
+
+[node name="MainCenterRect" type="CenterContainer" parent="MainMenuLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MainMenuLayer/MainCenterRect"]
+layout_mode = 2
+
+[node name="PlayerCountButton" type="OptionButton" parent="MainMenuLayer/MainCenterRect/VBoxContainer"]
+layout_mode = 2
+item_count = 3
+popup/item_0/text = "2 Players"
+popup/item_0/id = 0
+popup/item_1/text = "3 Players"
+popup/item_1/id = 1
+popup/item_2/text = "4 Players"
+popup/item_2/id = 2
+
+[connection signal="item_selected" from="MainMenuLayer/MainCenterRect/VBoxContainer/PlayerCountButton" to="." method="_on_player_count_button_item_selected"]
