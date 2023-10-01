@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://6my02lombpdw"]
+[gd_scene load_steps=4 format=3 uid="uid://6my02lombpdw"]
 
 [ext_resource type="Script" path="res://main/main.gd" id="1_luafi"]
 [ext_resource type="PackedScene" uid="uid://cr1o71avvkoto" path="res://shop/shop_container.tscn" id="2_4g6ky"]
+[ext_resource type="PackedScene" uid="uid://bl06gdighemoi" path="res://UI/turn_process_menu.tscn" id="3_1ayew"]
 
 [node name="Main" type="Node"]
 script = ExtResource("1_luafi")
@@ -9,12 +10,26 @@ script = ExtResource("1_luafi")
 [node name="ShopDisplayLayer" type="CanvasLayer" parent="."]
 
 [node name="ShopContainer" parent="ShopDisplayLayer" instance=ExtResource("2_4g6ky")]
-offset_left = 693.0
+anchors_preset = 11
+anchor_left = 1.0
+offset_left = -502.0
+offset_top = 179.0
+offset_bottom = -256.0
+grow_horizontal = 0
 theme_override_constants/margin_top = 50
 theme_override_constants/margin_right = 30
 theme_override_constants/margin_bottom = 50
 
-[node name="InterfaceLayer" type="CanvasLayer" parent="."]
+[node name="TurnProcessLayer" type="CanvasLayer" parent="."]
+visible = false
+
+[node name="TurnProcessContainer" parent="TurnProcessLayer" instance=ExtResource("3_1ayew")]
+anchors_preset = 10
+anchor_bottom = 0.0
+offset_left = 255.0
+offset_right = -248.0
+offset_bottom = 81.0
+grow_vertical = 1
 
 [node name="MainMenuLayer" type="CanvasLayer" parent="."]
 
@@ -24,7 +39,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-metadata/_edit_use_anchors_ = true
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MainMenuLayer/MainCenterRect"]
 layout_mode = 2
