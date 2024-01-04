@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://uml3iyto1cja"]
+
+[ext_resource type="Texture2D" uid="uid://dgd138s75t0fp" path="res://assets/icons/open_player_card_container_512.png" id="1_6sk41"]
+[ext_resource type="Script" path="res://UI/player_cards_container_button.gd" id="2_m876w"]
+
+[node name="PlayerCardsContainerButton" type="TextureButton"]
+offset_left = 313.0
+offset_top = 774.0
+offset_right = 380.0
+offset_bottom = 839.0
+texture_normal = ExtResource("1_6sk41")
+ignore_texture_size = true
+stretch_mode = 0
+script = ExtResource("2_m876w")
+
+[connection signal="pressed" from="." to="." method="_on_pressed"]

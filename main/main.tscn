@@ -1,8 +1,11 @@
-[gd_scene load_steps=4 format=3 uid="uid://6my02lombpdw"]
+[gd_scene load_steps=7 format=3 uid="uid://6my02lombpdw"]
 
 [ext_resource type="Script" path="res://main/main.gd" id="1_luafi"]
 [ext_resource type="PackedScene" uid="uid://cr1o71avvkoto" path="res://shop/shop_container.tscn" id="2_4g6ky"]
 [ext_resource type="PackedScene" uid="uid://bl06gdighemoi" path="res://UI/turn_process_menu.tscn" id="3_1ayew"]
+[ext_resource type="Script" path="res://main/helper.gd" id="4_35abj"]
+[ext_resource type="PackedScene" uid="uid://bh626akgvrqb2" path="res://UI/player_cards_container.tscn" id="4_e4mq0"]
+[ext_resource type="PackedScene" uid="uid://uml3iyto1cja" path="res://UI/player_cards_container_button.tscn" id="5_m0exr"]
 
 [node name="Main" type="Node"]
 script = ExtResource("1_luafi")
@@ -10,12 +13,16 @@ script = ExtResource("1_luafi")
 [node name="ShopDisplayLayer" type="CanvasLayer" parent="."]
 
 [node name="ShopContainer" parent="ShopDisplayLayer" instance=ExtResource("2_4g6ky")]
+custom_minimum_size = Vector2(700, 700)
 anchors_preset = 11
 anchor_left = 1.0
-offset_left = -502.0
-offset_top = 179.0
-offset_bottom = -256.0
+offset_left = -670.0
+offset_top = 140.0
+offset_right = 30.0
+offset_bottom = -133.0
 grow_horizontal = 0
+size_flags_horizontal = 4
+size_flags_vertical = 4
 theme_override_constants/margin_top = 50
 theme_override_constants/margin_right = 30
 theme_override_constants/margin_bottom = 50
@@ -52,5 +59,32 @@ popup/item_1/text = "3 Players"
 popup/item_1/id = 1
 popup/item_2/text = "4 Players"
 popup/item_2/id = 2
+
+[node name="PlayerCardsLayer" type="CanvasLayer" parent="."]
+
+[node name="ShopContainer" parent="PlayerCardsLayer" instance=ExtResource("4_e4mq0")]
+anchors_preset = 12
+anchor_top = 1.0
+offset_left = 250.0
+offset_top = -241.0
+offset_right = -250.0
+grow_vertical = 0
+
+[node name="PlayerCardsContainerButton" parent="PlayerCardsLayer" instance=ExtResource("5_m0exr")]
+
+[node name="Helper" type="CanvasLayer" parent="."]
+script = ExtResource("4_35abj")
+
+[node name="Panel" type="PanelContainer" parent="Helper"]
+offset_left = 6.0
+offset_top = 6.0
+offset_right = 7.0
+offset_bottom = 29.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+metadata/_edit_group_ = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Helper/Panel"]
+layout_mode = 2
 
 [connection signal="item_selected" from="MainMenuLayer/MainCenterRect/VBoxContainer/PlayerCountButton" to="." method="_on_player_count_button_item_selected"]

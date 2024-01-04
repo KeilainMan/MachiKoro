@@ -16,7 +16,7 @@ var player_id: int = 0:
 		player_id = new_id
 
 ##Monument Bools##
-var bought_main_station: bool = false:
+var bought_main_station: bool = true:
 	set(value):
 		bought_main_station = value
 	get:
@@ -44,10 +44,12 @@ func _ready():
 
 func increase_owned_money(increase_amount: int) -> void:
 	owned_money += clamp(increase_amount, 0, 1000)
+	Events.emit_signal("player_money_increased", self, owned_money)
 	
 	
 func decrease_owned_money(decrease_amount: int) -> void:
-	owned_money -= clamp(decrease_amount, -1000, 0)
+	owned_money -= clamp(decrease_amount, 0, 1000)
+	Events.emit_signal("player_money_decreased", self, owned_money)
 
 
 func add_card_to_player(new_card: CardBase) -> void:
