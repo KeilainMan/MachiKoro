@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="CardBaseResource" load_steps=3 format=3 uid="uid://5ikbhjjuvk1n"]
+
+[ext_resource type="Script" path="res://card_resources/card_base_resource.gd" id="1_1t1df"]
+[ext_resource type="Texture2D" uid="uid://x1661h4wyve3" path="res://assets/all_cards/radio_station.png" id="1_mpntt"]
+
+[resource]
+script = ExtResource("1_1t1df")
+card_name = "radio_station"
+card_type = "MonumentCard"
+card_income_catergory = ""
+card_income_numbers = Array[int]([])
+card_cost = 22
+card_tags = Array[int]([])
+income_amount = 0
+card_image = ExtResource("1_mpntt")

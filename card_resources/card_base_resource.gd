@@ -15,3 +15,4 @@ enum all_card_tags {GRAIN, PRODUCTION, LIVESTOCK, CLOTHING, COFFECUP}
 
 @export_group("Visual Cardproperties")
 @export var card_image: Texture
+@export var card_ownership: PlayerBase = null

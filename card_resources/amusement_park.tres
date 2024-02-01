@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="CardBaseResource" load_steps=3 format=3 uid="uid://p6215qf1e3mn"]
+
+[ext_resource type="Texture2D" uid="uid://cfod54blgdwpm" path="res://assets/all_cards/amusement_park.png" id="1_4mtef"]
+[ext_resource type="Script" path="res://card_resources/card_base_resource.gd" id="1_tp804"]
+
+[resource]
+script = ExtResource("1_tp804")
+card_name = "amusement_park"
+card_type = "MonumentCard"
+card_income_catergory = ""
+card_income_numbers = Array[int]([])
+card_cost = 16
+card_tags = Array[int]([])
+income_amount = 0
+card_image = ExtResource("1_4mtef")

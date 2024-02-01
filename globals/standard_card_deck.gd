@@ -14,6 +14,10 @@ var all_standard_cards: Array[Dictionary] = [
 	{"cardname": "family restaurant",	"card_count": 6,	"card_id": 4, 	"card_path": preload("res://card_scenes/family_restaurant.tscn")},
 	{"cardname": "orchard",				"card_count": 6,	"card_id": 10, 	"card_path": preload("res://card_scenes/orchard.tscn")},
 	{"cardname": "market",				"card_count": 6,	"card_id": 7, 	"card_path": preload("res://card_scenes/market.tscn")},
+	{"cardname": "train_station",		"card_count": 4,	"card_id": 13,	"card_path": preload("res://card_scenes/train_station.tscn")},
+	{"cardname": "mall",				"card_count": 4,	"card_id": 14,	"card_path": preload("res://card_scenes/mall.tscn")},
+	{"cardname": "amusement_park",		"card_count": 4,	"card_id": 15,	"card_path": preload("res://card_scenes/amusement_park.tscn")},
+	{"cardname": "radio_station",		"card_count": 4,	"card_id": 16,	"card_path": preload("res://card_scenes/radio_station.tscn")},
 	]:
 	get:
 		return all_standard_cards.duplicate()
@@ -31,6 +35,10 @@ var all_playercount_based_cards: Array = [
 	{"cardname": "orchard",				"card_count": 6,	"card_id": 10},
 	{"cardname": "wheat field",			"card_count": 6,	"card_id": 11},
 	{"cardname": "woods",				"card_count": 6,	"card_id": 12},
+	{"cardname": "train_station",		"card_count": 4,	"card_id": 13},
+	{"cardname": "mall",				"card_count": 4,	"card_id": 14},
+	{"cardname": "amusement_park",		"card_count": 4,	"card_id": 15},
+	{"cardname": "radio_station",		"card_count": 4,	"card_id": 16},
 ]:
 	get:
 		return all_playercount_based_cards

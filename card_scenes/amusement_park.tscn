@@ -1,0 +1,11 @@
+[gd_scene load_steps=4 format=3 uid="uid://cp40yvji3xbbl"]
+
+[ext_resource type="PackedScene" uid="uid://dn6d6o7px0ku6" path="res://card_scenes/card_base.tscn" id="1_b0tsm"]
+[ext_resource type="Texture2D" uid="uid://cfod54blgdwpm" path="res://assets/all_cards/amusement_park.png" id="2_dborp"]
+[ext_resource type="Resource" uid="uid://p6215qf1e3mn" path="res://card_resources/amusement_park.tres" id="2_r22n0"]
+
+[node name="CardBase" instance=ExtResource("1_b0tsm")]
+card_resource = ExtResource("2_r22n0")
+
+[node name="CardImage" parent="." index="0"]
+texture = ExtResource("2_dborp")

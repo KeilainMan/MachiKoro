@@ -6,10 +6,14 @@ extends MarginContainer
 ##NODES##
 @onready var grid_container = $VScrollBar/GridContainer
 
-
+##
+var viewport_size: Vector2
+var open: bool = false
 
 func _ready():
-	pass # Replace with function body.
+	viewport_size = get_viewport().size
+	position = Vector2(viewport_size.x + size.x, 140)
+	Events.toggle_shop.connect(_on_toggle_shop.bind())
 
 
 func load_shop() -> void:
@@ -32,3 +36,22 @@ func instance_card_stack() -> VBoxContainer:
 func instance_card_on_stack(card_scene: PackedScene, new_card_stack: VBoxContainer) -> void:
 	var new_card: CardBase = card_scene.instantiate()
 	new_card_stack.add_child(new_card)
+
+
+func _on_toggle_shop() -> void:
+	if open:
+		disappear()
+	else:
+		appear()
+
+
+func appear() -> void:
+	var tween: Tween = create_tween()
+	tween.tween_property(self, "position", Vector2(viewport_size.x - size.x, 140), 0.3)
+	open = true
+
+
+func disappear() -> void:
+	var tween: Tween = create_tween()
+	tween.tween_property(self, "position", Vector2(viewport_size.x + size.x, 140), 0.3)
+	open = false

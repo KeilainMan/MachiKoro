@@ -1,0 +1,127 @@
+[gd_scene load_steps=8 format=3 uid="uid://c0cniy0cs67x3"]
+
+[ext_resource type="Texture2D" uid="uid://cka8kgmtlk1rj" path="res://UI/spritesheet_dice.png" id="1_6ym00"]
+[ext_resource type="Script" path="res://animations/dice_throw.gd" id="2_1yfdw"]
+
+[sub_resource type="Curve" id="Curve_eqb6m"]
+_data = [Vector2(0, 0.473684), 0.0, 0.0, 0, 0, Vector2(1e-05, 0.473684), 0.0, 0.0, 0, 0, Vector2(0.246988, 1), 0.0, 0.0, 0, 0, Vector2(0.759036, 1), 0.0426187, 0.0426187, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 5
+
+[sub_resource type="CurveTexture" id="CurveTexture_edcoj"]
+curve = SubResource("Curve_eqb6m")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_k8vo7"]
+emission_shape = 3
+emission_box_extents = Vector3(250, 0, 0)
+particle_flag_disable_z = true
+direction = Vector3(0, -1, 0)
+spread = 30.0
+gravity = Vector3(0, 0, 0)
+initial_velocity_min = 500.0
+initial_velocity_max = 500.0
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+damping_min = 10.0
+damping_max = 10.0
+scale_min = 3.0
+scale_max = 3.0
+scale_curve = SubResource("CurveTexture_edcoj")
+color = Color(1, 0, 0, 1)
+hue_variation_min = -1.0
+hue_variation_max = 1.0
+turbulence_noise_strength = 0.0
+turbulence_noise_scale = 8.47
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_bgoid"]
+emission_shape = 3
+emission_box_extents = Vector3(50, 25, 0)
+particle_flag_disable_z = true
+direction = Vector3(-1, -1, 0)
+spread = 30.0
+gravity = Vector3(0, 0, 0)
+initial_velocity_min = 500.0
+initial_velocity_max = 500.0
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+damping_min = 10.0
+damping_max = 10.0
+scale_min = 3.0
+scale_max = 3.0
+scale_curve = SubResource("CurveTexture_edcoj")
+color = Color(0.662745, 1, 0.968627, 1)
+hue_variation_min = -1.0
+hue_variation_max = 1.0
+turbulence_noise_strength = 0.0
+turbulence_noise_scale = 8.47
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ruqv1"]
+emission_shape = 3
+emission_box_extents = Vector3(-50, -25, 0)
+particle_flag_disable_z = true
+direction = Vector3(1, -1, 0)
+spread = 30.0
+gravity = Vector3(0, 0, 0)
+initial_velocity_min = 500.0
+initial_velocity_max = 500.0
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+damping_min = 10.0
+damping_max = 10.0
+scale_min = 3.0
+scale_max = 3.0
+scale_curve = SubResource("CurveTexture_edcoj")
+color = Color(0.929412, 0.341176, 1, 1)
+hue_variation_min = -1.0
+hue_variation_max = 1.0
+turbulence_noise_strength = 0.0
+turbulence_noise_scale = 8.47
+
+[node name="Dice" type="Sprite2D"]
+self_modulate = Color(0, 0, 0, 1)
+position = Vector2(919, 547)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("1_6ym00")
+hframes = 6
+frame = 1
+script = ExtResource("2_1yfdw")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+position = Vector2(-4, -260)
+emitting = false
+amount = 2000
+process_material = SubResource("ParticleProcessMaterial_k8vo7")
+lifetime = 2.0
+one_shot = true
+explosiveness = 0.7
+fixed_fps = 60
+trail_sections = 20
+trail_section_subdivisions = 10
+
+[node name="GPUParticles2D2" type="GPUParticles2D" parent="."]
+position = Vector2(-252, -252)
+emitting = false
+amount = 500
+process_material = SubResource("ParticleProcessMaterial_bgoid")
+lifetime = 2.0
+one_shot = true
+explosiveness = 0.7
+fixed_fps = 60
+trail_sections = 20
+trail_section_subdivisions = 10
+
+[node name="GPUParticles2D3" type="GPUParticles2D" parent="."]
+position = Vector2(256, -252)
+emitting = false
+amount = 500
+process_material = SubResource("ParticleProcessMaterial_ruqv1")
+lifetime = 2.0
+one_shot = true
+explosiveness = 0.7
+fixed_fps = 60
+trail_sections = 20
+trail_section_subdivisions = 10
+
+[node name="Timer" type="Timer" parent="."]
+
+[connection signal="tree_exiting" from="." to="." method="_on_tree_exiting"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

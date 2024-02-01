@@ -3,6 +3,7 @@
 [ext_resource type="Script" path="res://shop/shop_container.gd" id="1_j27hk"]
 
 [node name="ShopContainer" type="MarginContainer"]
+clip_contents = true
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -22,5 +23,5 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_constants/h_separation = 10
-theme_override_constants/v_separation = 10
+theme_override_constants/v_separation = -50
 columns = 3

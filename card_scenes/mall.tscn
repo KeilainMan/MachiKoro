@@ -1,0 +1,11 @@
+[gd_scene load_steps=4 format=3 uid="uid://kpdwqjt08otm"]
+
+[ext_resource type="PackedScene" uid="uid://dn6d6o7px0ku6" path="res://card_scenes/card_base.tscn" id="1_wmkep"]
+[ext_resource type="Resource" uid="uid://de7qs355jy6yv" path="res://card_resources/mall.tres" id="2_7n8q8"]
+[ext_resource type="Texture2D" uid="uid://5ejco7f0kdfv" path="res://assets/all_cards/mall.png" id="2_oxgxc"]
+
+[node name="CardBase" instance=ExtResource("1_wmkep")]
+card_resource = ExtResource("2_7n8q8")
+
+[node name="CardImage" parent="." index="0"]
+texture = ExtResource("2_oxgxc")
