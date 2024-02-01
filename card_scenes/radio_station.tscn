@@ -1,0 +1,11 @@
+[gd_scene load_steps=4 format=3 uid="uid://bg6q0ak71iv88"]
+
+[ext_resource type="PackedScene" uid="uid://dn6d6o7px0ku6" path="res://card_scenes/card_base.tscn" id="1_3gqw8"]
+[ext_resource type="Resource" uid="uid://5ikbhjjuvk1n" path="res://card_resources/radio_station.tres" id="2_ki6po"]
+[ext_resource type="Texture2D" uid="uid://x1661h4wyve3" path="res://assets/all_cards/radio_station.png" id="2_qeg4t"]
+
+[node name="CardBase" instance=ExtResource("1_3gqw8")]
+card_resource = ExtResource("2_ki6po")
+
+[node name="CardImage" parent="." index="0"]
+texture = ExtResource("2_qeg4t")

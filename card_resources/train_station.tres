@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="CardBaseResource" load_steps=3 format=3 uid="uid://c8hlmldaen5jj"]
+
+[ext_resource type="Script" path="res://card_resources/card_base_resource.gd" id="1_ruyjd"]
+[ext_resource type="Texture2D" uid="uid://bofhn1nn0paek" path="res://assets/all_cards/train_station.png" id="1_u18nb"]
+
+[resource]
+script = ExtResource("1_ruyjd")
+card_name = "train_station"
+card_type = "MonumentCard"
+card_income_catergory = ""
+card_income_numbers = Array[int]([])
+card_cost = 4
+card_tags = Array[int]([])
+income_amount = 0
+card_image = ExtResource("1_u18nb")

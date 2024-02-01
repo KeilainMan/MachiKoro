@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="CardBaseResource" load_steps=3 format=3 uid="uid://de7qs355jy6yv"]
+
+[ext_resource type="Texture2D" uid="uid://5ejco7f0kdfv" path="res://assets/all_cards/mall.png" id="1_clpgp"]
+[ext_resource type="Script" path="res://card_resources/card_base_resource.gd" id="1_kbmxw"]
+
+[resource]
+script = ExtResource("1_kbmxw")
+card_name = "Mall"
+card_type = "MonumentCard"
+card_income_catergory = ""
+card_income_numbers = Array[int]([])
+card_cost = 10
+card_tags = Array[int]([])
+income_amount = 0
+card_image = ExtResource("1_clpgp")

@@ -1,7 +1,7 @@
 extends Node
 
 ## PLAYER INFORMATION
-signal new_current_player(player) #from Main(Gamboard) to GameManager
+signal new_current_player(player) #from Main(Gameboard) to GameManager
 signal players_registered(all_players) #from Main(Gamboard) to GameManager
 signal player_money_increased(player, money) #from player to helper
 signal player_money_decreased(player, money) #from player to helper
@@ -28,6 +28,8 @@ signal card_was_bought(card) #from GameManager to PlayerCardsContainer
 ##TURNORDER SIGNALS
 signal turn_finished() #from TurnEndButton to GameManager
 signal new_turn_starts() #from GameManager to UI and everything that needs to be refreshed on the new turn
+
+signal amusement_park_triggered(player) #from GameManager to
 
 
 ## OPTICAL SIGNALS

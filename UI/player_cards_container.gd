@@ -4,15 +4,17 @@ extends MarginContainer
 @onready var card_stack: PackedScene = preload("res://shop/card_stack.tscn")
 
 @onready var h_box_container = $VScrollBar/HBoxContainer
+@onready var margin_container = $VScrollBar/HBoxContainer/MarginContainer
 
 
-
+var viewport_size: Vector2 
 var opened: bool = false
 
 
 
 func _ready():
-	position = Vector2(250, 1080)
+	viewport_size = get_viewport().size
+	position = Vector2(13, viewport_size.y + size.y)
 	Events.card_was_bought.connect(_on_card_was_bought.bind())
 	Events.player_card_container_toggled.connect(_on_player_card_container_was_toggled.bind())
 	Events.new_current_player.connect(_on_new_current_player.bind())
@@ -47,6 +49,8 @@ func add_new_card(card: CardBase) -> void:
 	else:
 		var new_stack: VBoxContainer = instance_card_stack()
 		card.reparent(new_stack)
+		h_box_container.move_child(margin_container, h_box_container.get_child_count())
+		
 
 
 func cardstack_exists(card_name: String) -> bool:
@@ -67,12 +71,11 @@ func instance_card_stack() -> VBoxContainer:
 
 
 func _on_player_card_container_was_toggled() -> void:
-	print("toggled")
 	var tween: Tween = create_tween()
 	if opened:
-		tween.tween_property(self, "position", Vector2(250, 1080), 0.3)
+		tween.tween_property(self, "position", Vector2(13, viewport_size.y + size.y), 0.3)
 		opened = false
 	else:
-		tween.tween_property(self, "position", Vector2(250, 839), 0.3)
+		tween.tween_property(self, "position", Vector2(13, viewport_size.y - size.y+50), 0.3)
 		opened = true
 

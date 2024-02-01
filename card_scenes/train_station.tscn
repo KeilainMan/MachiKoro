@@ -1,0 +1,11 @@
+[gd_scene load_steps=4 format=3 uid="uid://dwpkomyahabm4"]
+
+[ext_resource type="PackedScene" uid="uid://dn6d6o7px0ku6" path="res://card_scenes/card_base.tscn" id="1_his7d"]
+[ext_resource type="Texture2D" uid="uid://bofhn1nn0paek" path="res://assets/all_cards/train_station.png" id="2_2cyav"]
+[ext_resource type="Resource" uid="uid://c8hlmldaen5jj" path="res://card_resources/train_station.tres" id="2_ejk83"]
+
+[node name="CardBase" instance=ExtResource("1_his7d")]
+card_resource = ExtResource("2_ejk83")
+
+[node name="CardImage" parent="." index="0"]
+texture = ExtResource("2_2cyav")

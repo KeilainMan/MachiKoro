@@ -14,6 +14,8 @@ var card_type: String
 var card_income_catergory: String
 var card_income_numbers: Array[int]
 var card_cost: int
+var card_income_amount: int
+var card_tags: Array
 
 var card_image_texture: Texture
 var card_ownership: PlayerBase:
@@ -62,6 +64,8 @@ func set_card_data() -> void:
 	card_income_numbers = card_resource.card_income_numbers
 	card_cost = card_resource.card_cost
 	card_image_texture = card_resource.card_image
+	card_income_amount = card_resource.income_amount
+	card_tags = card_resource.card_tags
 	set("card_ownership", card_resource.card_ownership)
 
 

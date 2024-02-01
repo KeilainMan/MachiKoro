@@ -6,10 +6,13 @@ extends MarginContainer
 ##NODES##
 @onready var grid_container = $VScrollBar/GridContainer
 
+##
+var viewport_size: Vector2
 var open: bool = false
 
 func _ready():
-	position = Vector2(2500, 140)
+	viewport_size = get_viewport().size
+	position = Vector2(viewport_size.x + size.x, 140)
 	Events.toggle_shop.connect(_on_toggle_shop.bind())
 
 
@@ -44,12 +47,11 @@ func _on_toggle_shop() -> void:
 
 func appear() -> void:
 	var tween: Tween = create_tween()
-	tween.tween_property(self, "position", Vector2(1250, 140), 0.3)
+	tween.tween_property(self, "position", Vector2(viewport_size.x - size.x, 140), 0.3)
 	open = true
-	
-	
+
 
 func disappear() -> void:
 	var tween: Tween = create_tween()
-	tween.tween_property(self, "position", Vector2(2500, 140), 0.3)
+	tween.tween_property(self, "position", Vector2(viewport_size.x + size.x, 140), 0.3)
 	open = false

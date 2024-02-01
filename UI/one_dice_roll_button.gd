@@ -17,12 +17,14 @@ func _ready():
 ##TURN START FUNCTIONS, GET EXECUTED IN ORDER ##
 
 func _on_new_turn_starts() -> void:
+	print("TURN STARTS")
 	reset_dice_throw_counter()
 	_on_enable_button()
 
 
 func _on_new_current_player(player: PlayerBase) -> void:
-	if player.bought_radio_tower:
+	print("NEW PLAYER")
+	if player.get("bought_radio_station"):
 		set("dice_throw_counter_max", 2)
 
 

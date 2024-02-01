@@ -22,11 +22,11 @@ func _on_new_turn_starts() -> void:
 
 
 func _on_new_current_player(player: PlayerBase) -> void:
-	if player.bought_radio_tower:
+	if player.bought_radio_station:
 		set("dice_throw_counter_max", 2)
 	else:
 		set("dice_throw_counter_max", 1)
-	if player.bought_main_station:
+	if player.bought_train_station:
 		visible = true
 	else:
 		visible = false

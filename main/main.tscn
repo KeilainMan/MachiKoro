@@ -13,10 +13,10 @@ script = ExtResource("1_luafi")
 [node name="ShopDisplayLayer" type="CanvasLayer" parent="."]
 
 [node name="ShopContainer" parent="ShopDisplayLayer" instance=ExtResource("2_4g6ky")]
-custom_minimum_size = Vector2(700, 700)
+custom_minimum_size = Vector2(520, 700)
 anchors_preset = 11
 anchor_left = 1.0
-offset_left = -670.0
+offset_left = -420.0
 offset_top = 140.0
 offset_right = 30.0
 offset_bottom = -133.0
@@ -44,6 +44,10 @@ grow_vertical = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = 8.0
+offset_top = 13.0
+offset_right = 8.0
+offset_bottom = 13.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -63,14 +67,21 @@ popup/item_2/id = 2
 [node name="PlayerCardsLayer" type="CanvasLayer" parent="."]
 
 [node name="ShopContainer" parent="PlayerCardsLayer" instance=ExtResource("4_e4mq0")]
+custom_minimum_size = Vector2(0, 350)
 anchors_preset = 12
 anchor_top = 1.0
-offset_left = 250.0
-offset_top = -241.0
-offset_right = -250.0
+offset_left = 13.0
+offset_top = -310.0
+offset_right = -839.0
+offset_bottom = 40.0
 grow_vertical = 0
+size_flags_vertical = 3
 
 [node name="PlayerCardsContainerButton" parent="PlayerCardsLayer" instance=ExtResource("5_m0exr")]
+offset_left = 13.0
+offset_top = 648.0
+offset_right = 80.0
+offset_bottom = 713.0
 
 [node name="Helper" type="CanvasLayer" parent="."]
 script = ExtResource("4_35abj")
@@ -87,4 +98,17 @@ metadata/_edit_group_ = true
 [node name="VBoxContainer" type="VBoxContainer" parent="Helper/Panel"]
 layout_mode = 2
 
+[node name="LogBoxLabel" type="RichTextLabel" parent="Helper/Panel/VBoxContainer"]
+clip_contents = false
+custom_minimum_size = Vector2(300, 300)
+layout_mode = 2
+size_flags_vertical = 3
+bbcode_enabled = true
+scroll_following = true
+
+[node name="TextInputLine" type="LineEdit" parent="Helper/Panel/VBoxContainer"]
+layout_mode = 2
+placeholder_text = "Insert  Command"
+
 [connection signal="item_selected" from="MainMenuLayer/MainCenterRect/VBoxContainer/PlayerCountButton" to="." method="_on_player_count_button_item_selected"]
+[connection signal="text_submitted" from="Helper/Panel/VBoxContainer/TextInputLine" to="Helper" method="_on_text_input_line_text_submitted"]

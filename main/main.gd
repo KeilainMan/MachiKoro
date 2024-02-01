@@ -18,7 +18,7 @@ var player_count: int = 2:
 	set(new_player_count):
 		player_count = clamp(new_player_count, 2, 4)
 		initialize_game()
-var players: Array
+var players: Array[PlayerBase]
 
 
 var current_gamestate: = game_states.IDLE:
@@ -44,7 +44,8 @@ func initialize_game() -> void:
 	main_menu_layer.hide()
 	
 	instance_players(player_count)
-	players.append_array(get_tree().get_nodes_in_group("player"))
+	#players.append_array(get_tree().get_nodes_in_group("player"))
+	GameManager.set("players", players)
 	Events.emit_signal("players_registered", players)
 	
 	instance_all_cards()
@@ -56,7 +57,9 @@ func instance_players(number_of_players: int) -> void:
 		var new_player: PlayerBase = player_scene.instantiate()
 		new_player.add_to_group("player")
 		add_child(new_player)
+		players.append(new_player)
 		new_player.set("player_id", n)
+		new_player.name = "Player" + str(n)
 
 
 func instance_all_cards() -> void:
@@ -76,8 +79,8 @@ func add_starting_cards_to_players() -> void:
 
 func instance_card_on_player(card: PackedScene, player: PlayerBase) -> void:
 	var new_card: CardBase = card.instantiate()
-	player.add_card_to_player(new_card)
-	player.add_child(new_card)
+	self.add_child(new_card)
+	GameManager.transfer_card_ownership(new_card, player)
 	
 	
 ################################################################################

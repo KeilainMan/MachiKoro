@@ -2,9 +2,13 @@ extends CanvasLayer
 
 
 
-@onready var label_parent = $Panel/VBoxContainer
+@onready var text_input_line = $Panel/VBoxContainer/TextInputLine
+@onready var log_box_label = $Panel/VBoxContainer/LogBoxLabel
 
-var max_child_count: int = 15
+var all_commands: Array[String] = Commands.get("commands")
+
+
+var max_child_count: int = 40
 
 func _ready():
 	Events.new_current_player.connect(on_new_current_player.bind())
@@ -13,50 +17,96 @@ func _ready():
 	Events.player_money_decreased.connect(on_player_money_decreased.bind())
 	Events.player_card_added.connect(on_player_card_added.bind())
 	Events.player_card_removed.connect(on_player_card_removed.bind())
+	
 
+####################################################################################################
+## CONSOLE OUTPUT ##
 
 func on_new_current_player(new_player: PlayerBase) -> void:
-	var new_label: Label = Label.new()
-	new_label.text = "New current player: " + str(new_player)
-	label_parent.add_child(new_label)
-	limit_max_labels()
+	instance_label("New current player: " + "[color=#74A4BC]" + str(new_player.name) + "[/color]")
 
 
 func on_send_dice_throw_results(dice_result: int) -> void:
-	var new_label: Label = Label.new()
-	new_label.text = "New dice throw result: " + str(dice_result)
-	label_parent.add_child(new_label)
-	limit_max_labels()
+	instance_label("New dice throw result: " + str(dice_result))
 
 
 func on_player_money_increased(player: PlayerBase, new_money: int) -> void:
-	var new_label: Label = Label.new()
-	new_label.text = str(player) + " money increased to " + str(new_money)
-	label_parent.add_child(new_label)
-	limit_max_labels()
+	instance_label("[color=#74A4BC]" + str(player.name) + "[/color]" + " money increased to " + "[color=#C98CA7]" + str(new_money) + "[/color]")
 
 
 func on_player_money_decreased(player: PlayerBase, new_money: int) -> void:
-	var new_label: Label = Label.new()
-	new_label.text = str(player) + " money decreased to " + str(new_money)
-	label_parent.add_child(new_label)
-	limit_max_labels()
+	instance_label("[color=#74A4BC]" + str(player.name) + "[/color]" + " money decreased to " + "[color=#C98CA7]" + str(new_money) + "[/color]")
 
 
 func on_player_card_added(player: PlayerBase, cardname: String) -> void:
-	var new_label: Label = Label.new()
-	new_label.text = str(player) + " card added " + cardname
-	label_parent.add_child(new_label)
-	limit_max_labels()
+	instance_label("[color=#74A4BC]" + str(player.name) + "[/color]" + " card added " + "[color=#FF3A20]" + cardname + "[/color]")
 
 
 func on_player_card_removed(player: PlayerBase, cardname: String) -> void:
-	var new_label: Label = Label.new()
-	new_label.text = str(player) + " card removed " + cardname
-	label_parent.add_child(new_label)
-	limit_max_labels()
+	instance_label("[color=#74A4BC]" + str(player.name) + "[/color]" + " card removed " + cardname)
 
 
-func limit_max_labels() -> void:
-	if label_parent.get_child_count() > max_child_count:
-		label_parent.get_child(0).queue_free()
+func on_no_command_entered() -> void:
+	instance_label("Error, missing /")
+
+
+func on_false_command_entered() -> void:
+	instance_label("Error, command not found")
+	
+
+func instance_label(text: String) -> void:
+	log_box_label.text += "\n"
+	log_box_label.text += text
+
+
+####################################################################################################
+## INPUT ##
+
+
+func _input(event):
+	if event.is_action_pressed("toggle_console"):
+		if self.visible:
+			self.hide()
+		else:
+			self.show()
+	if event.is_action_pressed("text_input") and self.visible and !text_input_line.has_focus():
+		text_input_line.grab_focus()
+
+
+func _on_text_input_line_text_submitted(new_text: String) -> void:
+	if new_text == "":
+		return
+	check_input_command(text_input_line.text)
+	text_input_line.text = ""
+
+
+####################################################################################################
+## COMMANDS ##
+
+
+func check_input_command(text: String) -> void:
+	if !text.begins_with("/"):
+		on_no_command_entered()
+		return
+	
+	text = text.erase(0, 1)
+	var command_string: String = text.get_slice(" ", 0)
+	if !all_commands.has(command_string):
+		on_false_command_entered()
+		return
+	
+	if command_string == "throw_dice":
+		var value1: String = text.get_slice(" ", 1)
+		var value2: String = text.get_slice(" ", 2)
+		if value1.is_valid_int() and value2.is_valid_int():
+			if (int(value1) > 0 and int(value1) < 6) and (int(value2) > 0 and int(value2) < 6):
+				GameManager.set("dice_throw_counter_max", 2)
+				Events.emit_signal("send_dice_throw_result", int(value1))
+				Events.emit_signal("send_dice_throw_result", int(value2))
+		elif value1.is_valid_int() and value2 == "":
+			if int(value1) > 0 and int(value1) < 6:
+				Events.emit_signal("send_dice_throw_result", int(value1))
+	
+
+
+

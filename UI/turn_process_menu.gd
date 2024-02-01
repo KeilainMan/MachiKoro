@@ -22,8 +22,8 @@ func _on_new_current_player(new_player: PlayerBase) -> void:
 	
 	
 func update_layout_based_on_current_player(player: PlayerBase) -> void:
-	var has_main_station: bool = player.get("bought_main_station")
-	if has_main_station: 
+	var has_train_station: bool = player.get("bought_train_station")
+	if has_train_station: 
 		two_dice_roll_button.show()
 
 
