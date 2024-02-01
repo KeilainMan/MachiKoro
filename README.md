@@ -7,16 +7,16 @@
 - [x] Turn Order
 - [x] Logic of income cards
 - [x] Logic of momument cards
-- [] Logic of special cards (6-triggered)
+- [ ] Logic of special cards (6-triggered)
 - [x] Logic card shop
 - [x] Display card shop
 - [x] Display player cards
 - [x] Display turn order
 - [x] Logic dice throw
-- [] Logic turn order (which actions are possible at what time)
-- [] Logic game finish
-- [] Display of player information
-- [] Visual overhall
+- [ ] Logic turn order (which actions are possible at what time)
+- [ ] Logic game finish
+- [ ] Display of player information
+- [ ] Visual overhall
 
 
 ### EXTRAS
