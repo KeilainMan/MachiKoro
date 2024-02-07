@@ -63,12 +63,12 @@ func instance_players(number_of_players: int) -> void:
 
 
 func instance_all_cards() -> void:
-	load_shop()
+	load_shop(player_count)
 	add_starting_cards_to_players()
 
 
-func load_shop() -> void:
-	shop_container.load_shop()
+func load_shop(count: int) -> void:
+	shop_container.load_shop(count)
 
 
 func add_starting_cards_to_players() -> void:
