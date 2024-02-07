@@ -64,7 +64,7 @@ func _on_throw_two_dice() -> void:
 
 func _on_dice_throw_result_send(dice_eyes: int) -> void:
 	dice_throw_counter += 1
-	if dice_throw_counter_max == 2 and current_player.get("bought_amusement_park") == true:
+	if dice_throw_counter_max == 2 and current_player.get("bought_amusement_park"):
 		if current_dice_result == dice_eyes:
 			#Events.emit_signal("amusement_park_triggered", current_player)
 			repeat_player_turn = true
@@ -112,6 +112,7 @@ func proceed_card_income(dice_eyes: int) -> void:
 				"Enemys": #Enemys
 					enemy_cards.append(card)
 		var player_has_mall: bool = player.get("bought_mall")
+		print("MALL: ", player_has_mall)
 		if !player == current_player:
 			proceed_income_category_enemys(dice_eyes, enemy_cards, player, player_has_mall)
 		proceed_income_category_all(dice_eyes, all_cards, player, player_has_mall)
@@ -165,17 +166,25 @@ func _on_card_wants_to_be_bought(card: CardBase) -> void:
 func proceed_mumument_card_transaction(card: CardBase, player: PlayerBase) -> void:
 	var card_name: String = card.card_name
 	if card_name == "mall":
-		if player.get("bought_mall") == true:
+		if player.get("bought_mall"):
 			return
+		else:
+			player.set("bought_mall", true)
 	elif card_name == "train_station":
-		if player.get("bought_train_station") == true:
+		if player.get("bought_train_station"):
 			return
+		else:
+			player.set("bought_train_station", true)
 	elif card_name == "amusement_park":
-		if player.get("bought_amusement_park") == true:
+		if player.get("bought_amusement_park"):
 			return
+		else:
+			player.set("bought_amusement_park", true)
 	elif card_name == "radio_station":
-		if player.get("bought_radio_station") == true:
+		if player.get("bought_radio_station"):
 			return
+		else:
+			player.set("bought_radio_station", true)
 	
 
 func process_transaction(card_cost: int) -> void:
@@ -194,7 +203,9 @@ func transfer_card_ownership(card: CardBase, current_player: PlayerBase) -> void
 func _on_turn_finished() -> void:
 	set("card_buy_token", 1)
 	if repeat_player_turn:
-		Events.emit_signal("new_turn_starts")
+		set("current_player", current_player)
+		repeat_player_turn = false
+		#Events.emit_signal("new_turn_starts")
 		return
 	game_board.change_turn_to_next_player(current_player)
 	

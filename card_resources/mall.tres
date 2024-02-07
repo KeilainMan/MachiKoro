@@ -5,7 +5,7 @@
 
 [resource]
 script = ExtResource("1_kbmxw")
-card_name = "Mall"
+card_name = "mall"
 card_type = "MonumentCard"
 card_income_catergory = ""
 card_income_numbers = Array[int]([])

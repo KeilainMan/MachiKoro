@@ -1,0 +1,7 @@
+[gd_scene load_steps=3 format=3 uid="uid://b8v44hdhcreu7"]
+
+[ext_resource type="PackedScene" uid="uid://dn6d6o7px0ku6" path="res://card_scenes/card_base.tscn" id="1_sc4nx"]
+[ext_resource type="Resource" uid="uid://bb5qovkqnfagj" path="res://card_resources/stadium.tres" id="2_p21tl"]
+
+[node name="CardBase" instance=ExtResource("1_sc4nx")]
+card_resource = ExtResource("2_p21tl")

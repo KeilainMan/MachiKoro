@@ -18,7 +18,7 @@ var player_id: int = 0:
 		player_id = new_id
 
 ##Monument Bools##
-var bought_train_station: bool = true:
+var bought_train_station: bool = false:
 	set(value):
 		bought_train_station = value
 	get:

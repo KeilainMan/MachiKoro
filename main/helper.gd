@@ -1,7 +1,5 @@
 extends CanvasLayer
 
-
-
 @onready var text_input_line = $Panel/VBoxContainer/TextInputLine
 @onready var log_box_label = $Panel/VBoxContainer/LogBoxLabel
 
