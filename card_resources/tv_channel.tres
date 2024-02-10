@@ -13,3 +13,4 @@ card_cost = 7
 card_tags = Array[int]([5])
 income_amount = 5
 card_image = ExtResource("1_sqkvf")
+logic_tags = Array[int]([0, 150])

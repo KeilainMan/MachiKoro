@@ -31,6 +31,9 @@ signal new_turn_starts() #from GameManager to UI and everything that needs to be
 
 signal amusement_park_triggered(player) #from GameManager to
 
+##HELPER (CONSOLE) SIGNALS
+signal random_message(text) #from X to Main/Helper(Console)
+
 
 ## OPTICAL SIGNALS
 signal disable_buttons() #from anywhere to ButtonBase, to disable buttons

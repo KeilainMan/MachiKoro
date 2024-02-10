@@ -157,35 +157,58 @@ func proceed_income_category_personal(dice_eyes: int, cards: Array[CardBase], pl
 func _on_card_wants_to_be_bought(card: CardBase) -> void:
 	if card.card_cost <= current_player.owned_money and card_buy_token > 0:
 		if card.card_type == "MonumentCard":
-			proceed_mumument_card_transaction(card, current_player)
+			if player_has_monument_card(card, current_player):
+				return
+		elif card.card_type == "SpecialCard":
+			if player_has_special_card(card, current_player):
+				return
 		process_transaction(card.card_cost)
 		transfer_card_ownership(card, current_player)
 		#card_buy_token -= 1
 
 
-func proceed_mumument_card_transaction(card: CardBase, player: PlayerBase) -> void:
+func player_has_monument_card(card: CardBase, player: PlayerBase) -> bool:
 	var card_name: String = card.card_name
 	if card_name == "mall":
 		if player.get("bought_mall"):
-			return
+			Events.emit_signal("random_message", str("[color=#74A4BC]" + str(player.name) + "[/color]", " already owns the card ", "[color=#FF3A20]" + card_name + "[/color]"))
+			return true
 		else:
 			player.set("bought_mall", true)
+			return false
 	elif card_name == "train_station":
 		if player.get("bought_train_station"):
-			return
+			Events.emit_signal("random_message", str("[color=#74A4BC]" + str(player.name) + "[/color]", " already owns the card ", "[color=#FF3A20]" + card_name + "[/color]"))
+			return true
 		else:
 			player.set("bought_train_station", true)
+			return false
 	elif card_name == "amusement_park":
 		if player.get("bought_amusement_park"):
-			return
+			Events.emit_signal("random_message", str("[color=#74A4BC]" + str(player.name) + "[/color]", " already owns the card ", "[color=#FF3A20]" + card_name + "[/color]"))
+			return true
 		else:
 			player.set("bought_amusement_park", true)
+			return false
 	elif card_name == "radio_station":
 		if player.get("bought_radio_station"):
-			return
+			Events.emit_signal("random_message", str("[color=#74A4BC]" + str(player.name) + "[/color]", " already owns the card ", "[color=#FF3A20]" + card_name + "[/color]"))
+			return true
 		else:
 			player.set("bought_radio_station", true)
-	
+			return false
+	else: return true
+
+
+func player_has_special_card(card: CardBase, player: PlayerBase) -> bool:
+	var card_name: String = card.card_name
+	var player_cards: Array = player.get("owned_cards")
+	for player_card in player_cards:
+		if player_card.card_name == card_name:
+			Events.emit_signal("random_message", str("[color=#74A4BC]" + str(player.name) + "[/color]", " already owns the card ", "[color=#FF3A20]" + card_name + "[/color]"))
+			return true
+	return false
+
 
 func process_transaction(card_cost: int) -> void:
 	current_player.decrease_owned_money(card_cost)

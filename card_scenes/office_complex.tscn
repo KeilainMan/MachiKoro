@@ -5,4 +5,3 @@
 
 [node name="CardBase" instance=ExtResource("1_omh6m")]
 card_resource = ExtResource("2_klf45")
-logic_tags = Array[int]([0, 10, 10, 20])

@@ -16,6 +16,7 @@ var card_income_numbers: Array[int]
 var card_cost: int
 var card_income_amount: int
 var card_tags: Array
+var logic_tags: Array
 
 var card_image_texture: Texture
 var card_ownership: PlayerBase:
@@ -43,18 +44,6 @@ var current_mode: int:
 
 ##CARD TAGS THAT DETERMINE THAT CARDS BEHAVIOUR (ONLY SPECIALCARDS)##
 
-enum logic_card_tags { #NEVER CHANGE ORDER
-	PLAYERSELECTION = 1,
-	ALLENEMYS = 2,
-	
-	CHOOSECARDS = 10,
-	
-	SWAPCARDS = 20,
-	
-	STEALINCOME = 40,
-	EARNINCOME = 41,
-	}
-@export var logic_tags: Array[logic_card_tags]
 
 
 
@@ -79,6 +68,7 @@ func set_card_data() -> void:
 	card_image_texture = card_resource.card_image
 	card_income_amount = card_resource.income_amount
 	card_tags = card_resource.card_tags
+	logic_tags = card_resource.logic_tags
 	set("card_ownership", card_resource.card_ownership)
 
 

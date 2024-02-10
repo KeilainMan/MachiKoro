@@ -16,3 +16,17 @@ enum all_card_tags {GRAIN, PRODUCTION, LIVESTOCK, CLOTHING, COFFECUP, ENTERTAINM
 @export_group("Visual Cardproperties")
 @export var card_image: Texture
 @export var card_ownership: PlayerBase = null
+
+@export_group("Special Card Logic Tags")
+enum logic_card_tags { #NEVER CHANGE ORDER
+	PLAYERSELECTION = 1,
+	ALLENEMYS = 2,
+	
+	CHOOSECARDS = 50,
+	
+	SWAPCARDS = 100,
+	
+	STEALINCOME = 150,
+	EARNINCOME = 151,
+	}
+@export var logic_tags: Array[logic_card_tags]

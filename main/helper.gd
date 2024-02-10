@@ -15,6 +15,7 @@ func _ready():
 	Events.player_money_decreased.connect(on_player_money_decreased.bind())
 	Events.player_card_added.connect(on_player_card_added.bind())
 	Events.player_card_removed.connect(on_player_card_removed.bind())
+	Events.random_message.connect(on_random_message.bind())
 	
 
 ####################################################################################################
@@ -50,7 +51,11 @@ func on_no_command_entered() -> void:
 
 func on_false_command_entered() -> void:
 	instance_label("Error, command not found")
-	
+
+
+func on_random_message(text: String) -> void:
+	instance_label(text)
+
 
 func instance_label(text: String) -> void:
 	log_box_label.text += "\n"

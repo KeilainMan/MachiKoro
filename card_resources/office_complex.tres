@@ -13,3 +13,4 @@ card_cost = 8
 card_tags = Array[int]([5])
 income_amount = 0
 card_image = ExtResource("1_lebba")
+logic_tags = Array[int]([0, 50, 50, 100])
