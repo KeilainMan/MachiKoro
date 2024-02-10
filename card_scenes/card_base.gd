@@ -41,7 +41,20 @@ var current_mode: int:
 	get:
 		return current_mode
 
+##CARD TAGS THAT DETERMINE THAT CARDS BEHAVIOUR (ONLY SPECIALCARDS)##
 
+enum logic_card_tags { #NEVER CHANGE ORDER
+	PLAYERSELECTION = 1,
+	ALLENEMYS = 2,
+	
+	CHOOSECARDS = 10,
+	
+	SWAPCARDS = 20,
+	
+	STEALINCOME = 40,
+	EARNINCOME = 41,
+	}
+@export var logic_tags: Array[logic_card_tags]
 
 
 
