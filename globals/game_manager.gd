@@ -36,16 +36,18 @@ var current_player: PlayerBase:
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	Events.players_registered.connect(_on_players_registered.bind())
 	Events.throw_one_dice.connect(_on_throw_one_dice.bind())
 	Events.throw_two_dice.connect(_on_throw_two_dice.bind())
 	Events.turn_finished.connect(_on_turn_finished.bind())
 	Events.send_dice_throw_result.connect(_on_dice_throw_result_send.bind())
 	Events.card_wants_to_be_bought.connect(_on_card_wants_to_be_bought.bind())
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
+####################################################################################################
+## ORAGNIZE PLAYERS ##
 
+func _on_players_registered(plyrs: Array[PlayerBase]) -> void:
+	set("players", plyrs)
 
 ####################################################################################################
 ## 1ST PHASE: DICE ROLL PHASE ##
@@ -86,8 +88,11 @@ func clear_dice_throw() -> void:
 ## 2ND PHASE: AFTER DICE ROLL PHASE ##
 
 func proceed_after_dice_throw(dice_eyes: int) -> void:
-	proceed_card_income(dice_eyes)
-
+	print("Dice eye thrown: ", dice_eyes)
+	if dice_eyes == 6:
+		play_special_cards(current_player)
+	else:
+		proceed_card_income(dice_eyes)
 
 func proceed_card_income(dice_eyes: int) -> void:
 	for player_index in players.size():
@@ -112,7 +117,6 @@ func proceed_card_income(dice_eyes: int) -> void:
 				"Enemys": #Enemys
 					enemy_cards.append(card)
 		var player_has_mall: bool = player.get("bought_mall")
-		print("MALL: ", player_has_mall)
 		if !player == current_player:
 			proceed_income_category_enemys(dice_eyes, enemy_cards, player, player_has_mall)
 		proceed_income_category_all(dice_eyes, all_cards, player, player_has_mall)
@@ -151,6 +155,28 @@ func proceed_income_category_personal(dice_eyes: int, cards: Array[CardBase], pl
 				else:
 					player.increase_owned_money(card.card_income_amount)
 
+
+###################################
+##SPECIAL CARDS##
+
+
+func play_special_cards(player: PlayerBase) -> void:
+	var cards: Array[CardBase] = player.get("owned_cards")
+	var special_cards: Array[CardBase]
+	for card in cards:
+		if card.card_type == "SpecialCard":
+			special_cards.append(card)
+	
+	for card in special_cards:
+		print("Play card: ", card.card_name)
+		var special_tags: Array[int] = card.logic_tags
+		print("Special Tags: ", special_tags)
+		SpecialCardExecuter.play_special_card(special_tags)
+
+	
+	
+
+
 ####################################################################################################
 ## BUYING CARDS ##
 
@@ -162,7 +188,6 @@ func _on_card_wants_to_be_bought(card: CardBase) -> void:
 			else:
 				if card.card_type == "MonumentCard":
 					activate_momument_on_player(card.card_name, current_player)
-
 		process_transaction(card.card_cost)
 		transfer_card_ownership(card, current_player)
 		#card_buy_token -= 1
@@ -197,7 +222,7 @@ func transfer_card_ownership(card: CardBase, current_player: PlayerBase) -> void
 	current_player.add_card_to_player(card)
 	card.card_ownership = current_player
 	Events.emit_signal("card_was_bought", card)
-	
+
 
 ####################################################################################################
 ## END PHASE: TURN FINISH ##
@@ -210,4 +235,4 @@ func _on_turn_finished() -> void:
 		#Events.emit_signal("new_turn_starts")
 		return
 	game_board.change_turn_to_next_player(current_player)
-	
+

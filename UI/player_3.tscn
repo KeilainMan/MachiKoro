@@ -1,0 +1,50 @@
+[gd_scene load_steps=3 format=3 uid="uid://dmm8pwlw0wuwc"]
+
+[ext_resource type="Texture2D" uid="uid://bbutjhurwy1eb" path="res://assets/player_icons/red_player_bg250x300.png" id="1_jtitl"]
+
+[sub_resource type="GDScript" id="GDScript_ctmg4"]
+script/source = "extends PlayerPicBase
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	pass
+"
+
+[node name="Player3" type="VBoxContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = SubResource("GDScript_ctmg4")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+custom_minimum_size = Vector2(250, 300)
+layout_mode = 2
+size_flags_vertical = 3
+texture = ExtResource("1_jtitl")
+stretch_mode = 4
+
+[node name="Panel" type="Panel" parent="."]
+modulate = Color(0.507813, 0.125, 0.0898438, 1)
+custom_minimum_size = Vector2(250, 50)
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 32
+text = "Player3"
+horizontal_alignment = 1
+vertical_alignment = 1

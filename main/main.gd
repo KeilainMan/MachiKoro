@@ -45,7 +45,7 @@ func initialize_game() -> void:
 	
 	instance_players(player_count)
 	#players.append_array(get_tree().get_nodes_in_group("player"))
-	GameManager.set("players", players)
+	#GameManager.set("players", players)
 	Events.emit_signal("players_registered", players)
 	
 	instance_all_cards()
@@ -103,6 +103,7 @@ func start_game() -> void:
 func change_turn_to_next_player(current_player: PlayerBase) -> void:
 	if current_player == null:
 		var new_current_player: PlayerBase = players[0]
+		#Events.emit_signal("new_current_player", new_current_player)
 		GameManager.set("current_player", new_current_player)
 	else:
 		var player_index: int = players.find(current_player)
@@ -110,6 +111,7 @@ func change_turn_to_next_player(current_player: PlayerBase) -> void:
 		if new_player_index == players.size():
 			new_player_index = Helper.reset_iterator(new_player_index, players.size())
 		var new_current_player: PlayerBase = players[new_player_index]
+		#Events.emit_signal("new_current_player", new_current_player)
 		GameManager.set("current_player", new_current_player)
 
 

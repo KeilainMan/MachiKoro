@@ -102,12 +102,12 @@ func check_input_command(text: String) -> void:
 		var value1: String = text.get_slice(" ", 1)
 		var value2: String = text.get_slice(" ", 2)
 		if value1.is_valid_int() and value2.is_valid_int():
-			if (int(value1) > 0 and int(value1) < 6) and (int(value2) > 0 and int(value2) < 6):
+			if (int(value1) > 0 and int(value1) <= 6) and (int(value2) > 0 and int(value2) <= 6):
 				GameManager.set("dice_throw_counter_max", 2)
 				Events.emit_signal("send_dice_throw_result", int(value1))
 				Events.emit_signal("send_dice_throw_result", int(value2))
 		elif value1.is_valid_int() and value2 == "":
-			if int(value1) > 0 and int(value1) < 6:
+			if int(value1) > 0 and int(value1) <= 6:
 				Events.emit_signal("send_dice_throw_result", int(value1))
 	
 

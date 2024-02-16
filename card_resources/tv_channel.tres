@@ -5,7 +5,7 @@
 
 [resource]
 script = ExtResource("1_es1gg")
-card_name = "tc_channel"
+card_name = "tv_channel"
 card_type = "SpecialCard"
 card_income_catergory = "Player"
 card_income_numbers = Array[int]([6])
