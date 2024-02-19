@@ -71,6 +71,7 @@ func _on_dice_throw_result_send(dice_eyes: int) -> void:
 			#Events.emit_signal("amusement_park_triggered", current_player)
 			repeat_player_turn = true
 	current_dice_result += dice_eyes
+	Events.emit_signal("random_message", str("New dice throw result: " + str(current_dice_result)))
 	print("COUNTER: ", dice_throw_counter, " MAX: ", dice_throw_counter_max, " RESULT: ", current_dice_result)
 	if dice_throw_counter == dice_throw_counter_max:
 		print("PROCEED")

@@ -36,6 +36,7 @@ func _on_players_registered(plyrs: Array[PlayerBase]) -> void:
 ####################################################################################################
 ## PLAY SPECIAL CARD ##
 
+
 func play_special_card(card: CardBase) -> void:
 	Events.emit_signal("random_message", str("SpecialCard" + "[color=#FF3A20]" + card.card_name + "[/color]" + "will be executed!"))
 	var tags: Array[int] = card.get("logic_tags")
