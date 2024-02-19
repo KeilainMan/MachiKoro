@@ -93,6 +93,8 @@ func proceed_after_dice_throw(dice_eyes: int) -> void:
 		play_special_cards(current_player)
 	else:
 		proceed_card_income(dice_eyes)
+		
+	clear_dice_throw()
 
 func proceed_card_income(dice_eyes: int) -> void:
 	for player_index in players.size():
@@ -123,7 +125,7 @@ func proceed_card_income(dice_eyes: int) -> void:
 		if player == current_player:
 			proceed_income_category_personal(dice_eyes, player_cards, player, player_has_mall)
 		
-	clear_dice_throw()
+	
 
 func proceed_income_category_enemys(dice_eyes: int, cards: Array[CardBase], player: PlayerBase, player_has_mall: bool) -> void:
 	for card in cards:
@@ -169,9 +171,7 @@ func play_special_cards(player: PlayerBase) -> void:
 	
 	for card in special_cards:
 		print("Play card: ", card.card_name)
-		var special_tags: Array[int] = card.logic_tags
-		print("Special Tags: ", special_tags)
-		SpecialCardExecuter.play_special_card(special_tags)
+		SpecialCardExecuter.play_special_card(card)
 
 	
 	

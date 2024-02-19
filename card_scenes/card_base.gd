@@ -16,7 +16,9 @@ var card_income_numbers: Array[int]
 var card_cost: int
 var card_income_amount: int
 var card_tags: Array
-var logic_tags: Array
+var logic_tags: Array:
+	get:
+		return logic_tags
 
 var card_image_texture: Texture
 var card_ownership: PlayerBase:

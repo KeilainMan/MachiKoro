@@ -16,7 +16,7 @@ func _ready():
 	Events.player_card_added.connect(on_player_card_added.bind())
 	Events.player_card_removed.connect(on_player_card_removed.bind())
 	Events.random_message.connect(on_random_message.bind())
-	
+
 
 ####################################################################################################
 ## CONSOLE OUTPUT ##

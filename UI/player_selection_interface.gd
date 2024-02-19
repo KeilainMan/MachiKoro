@@ -37,3 +37,4 @@ func start_player_selection(player: PlayerBase, players: Array[PlayerBase]) -> P
 
 func _on_panel_clicked(id: int) -> void:
 	emit_signal("target_selected", id)
+	queue_free()
