@@ -65,7 +65,8 @@ func play_special_card(card: CardBase) -> void:
 func choose_card(target: PlayerBase) -> void:
 	var new_card_selection: MarginContainer = card_selection.instantiate()
 	get_tree().get_root().get_node("Main").get_node("SelectionLayer").add_child(new_card_selection)
-	new_card_selection.load_player_cards(target.get("owned_cards"))
+	var target_card: CardBase =  await new_card_selection.load_player_cards(target.get("owned_cards"))
+	print("TARGET: ", target_card)
 	
 	
 func play_target_tag(tag: int):

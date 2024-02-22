@@ -10,11 +10,10 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/margin_left = 300
 theme_override_constants/margin_top = 400
-theme_override_constants/margin_right = 500
+theme_override_constants/margin_right = 600
 script = ExtResource("1_cqayp")
 
 [node name="ScrollContainer" type="ScrollContainer" parent="."]
-clip_contents = false
 layout_mode = 2
 follow_focus = true
 
@@ -22,7 +21,7 @@ follow_focus = true
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-theme_override_constants/separation = 0
+theme_override_constants/separation = 10
 
 [node name="MarginContainer" type="MarginContainer" parent="ScrollContainer/HBoxContainer"]
 layout_mode = 2

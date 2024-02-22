@@ -6,19 +6,27 @@ extends MarginContainer
 @onready var h_box_container = $ScrollContainer/HBoxContainer
 @onready var margin_container = $ScrollContainer/HBoxContainer/MarginContainer
 
-
+signal card_selected
 
 
 func _ready():
 	pass
 
 
-func load_player_cards(cards: Array[CardBase]) -> void:
+func load_player_cards(cards: Array[CardBase]) -> CardBase:
 	for card in cards:
 		var new_card: CardBase = card.duplicate(8)
 		add_child(new_card)
+		new_card.card_selected.connect(_on_card_selected.bind())
+		new_card.set("current_mode", 2)
 		add_new_card(new_card)
+	
+	var target_card: CardBase = await card_selected
+	return target_card
 
+
+####################################################################################################
+##BUILD INTERFACE##
 
 func add_new_card(card: CardBase) -> void:
 	print("CardStack Exists: ", cardstack_exists(card.card_name), " for Name: ", card.card_name)
@@ -49,3 +57,11 @@ func instance_card_stack() -> VBoxContainer:
 	h_box_container.add_child(new_card_stack)
 	return new_card_stack
 
+
+####################################################################################################
+## ##
+
+
+func _on_card_selected(card: CardBase) -> void:
+	emit_signal("card_selected", card)
+	queue_free()

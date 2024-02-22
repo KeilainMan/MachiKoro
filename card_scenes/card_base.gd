@@ -33,7 +33,8 @@ var card_ownership: PlayerBase:
 ##CARD IN GAME MODES##
 enum card_modes {
 	SHOP,
-	PLAYEROWNED
+	PLAYEROWNED,
+	CARDSELECTION
 }
 var current_mode: int:
 	set(new_mode):
@@ -44,9 +45,18 @@ var current_mode: int:
 	get:
 		return current_mode
 
-##CARD TAGS THAT DETERMINE THAT CARDS BEHAVIOUR (ONLY SPECIALCARDS)##
+##LATER DEPENDENCIES##
+#var card_selection: MarginContainer = null:
+#	set(new_interface):
+#		card_selection = new_interface
+#		card_selected.connect(Callable(card_selection, "_on_card_selected"))
+#	get:
+#		return card_selection
 
 
+##INTERNAL SIGNALS##
+
+signal card_selected() #connects to card_selection
 
 
 ################################################################################
@@ -84,4 +94,6 @@ func _on_action_button_pressed() -> void:
 			Events.emit_signal("card_wants_to_be_bought", self)
 		card_modes.PLAYEROWNED:
 			pass
+		card_modes.CARDSELECTION:
+			emit_signal("card_selected", self)
 
