@@ -2,7 +2,7 @@ extends Node
 
 #DEPENDENCIES
 @onready var player_selection: PackedScene = preload("res://UI/player_selection_interface.tscn")
-
+@onready var card_selection: PackedScene = preload("res://UI/card_selection_interface.tscn")
 
 
 var players: Array[PlayerBase]:
@@ -46,7 +46,9 @@ func play_special_card(card: CardBase) -> void:
 		if tag == tags[0]:
 			targets = await play_target_tag(tags[0])
 		match tag:
-			50: #CHOOSECARDS
+			50: #CHOOSECARDSENEMY
+				choose_card(targets[0])
+			51: #CHOOSECARDPLAYER
 				pass
 			100: #SWAPCARDS
 				pass
@@ -59,6 +61,13 @@ func play_special_card(card: CardBase) -> void:
 ####################################################################################################
 ## TARGET SELECTOR/ PREPARATION TAGS < 50 ##
 
+
+func choose_card(target: PlayerBase) -> void:
+	var new_card_selection: MarginContainer = card_selection.instantiate()
+	get_tree().get_root().get_node("Main").get_node("SelectionLayer").add_child(new_card_selection)
+	new_card_selection.load_player_cards(target.get("owned_cards"))
+	
+	
 func play_target_tag(tag: int):
 	var target: Array[PlayerBase]
 	match tag:
@@ -72,7 +81,7 @@ func play_target_tag(tag: int):
 
 func choose_a_player_as_target(player: PlayerBase, players: Array[PlayerBase]) -> Array[PlayerBase]:
 	var new_player_selection: Control = player_selection.instantiate()
-	get_tree().get_root().get_node("Main").get_node("PlayerSelectionLayer").add_child(new_player_selection)
+	get_tree().get_root().get_node("Main").get_node("SelectionLayer").add_child(new_player_selection)
 	var target: PlayerBase = await new_player_selection.start_player_selection(player, players)
 
 	return [target]

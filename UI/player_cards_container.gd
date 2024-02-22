@@ -19,9 +19,6 @@ func _ready():
 	Events.player_card_container_toggled.connect(_on_player_card_container_was_toggled.bind())
 	Events.new_current_player.connect(_on_new_current_player.bind())
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
 
 
 func _on_new_current_player(new_current_player: PlayerBase) -> void:

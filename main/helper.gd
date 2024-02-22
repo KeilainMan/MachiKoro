@@ -10,7 +10,6 @@ var max_child_count: int = 40
 
 func _ready():
 	Events.new_current_player.connect(on_new_current_player.bind())
-	#Events.send_dice_throw_result.connect(on_send_dice_throw_results.bind())
 	Events.player_money_increased.connect(on_player_money_increased.bind())
 	Events.player_money_decreased.connect(on_player_money_decreased.bind())
 	Events.player_card_added.connect(on_player_card_added.bind())
@@ -23,10 +22,6 @@ func _ready():
 
 func on_new_current_player(new_player: PlayerBase) -> void:
 	instance_label("New current player: " + "[color=#74A4BC]" + str(new_player.name) + "[/color]")
-
-
-func on_send_dice_throw_results(dice_result: int) -> void:
-	instance_label("New dice throw result: " + str(dice_result))
 
 
 func on_player_money_increased(player: PlayerBase, new_money: int) -> void:

@@ -22,7 +22,8 @@ enum logic_card_tags { #NEVER CHANGE ORDER
 	PLAYERSELECTION = 1,
 	ALLENEMYS = 2,
 	
-	CHOOSECARDS = 50,
+	CHOOSECARDSENEMY = 50,
+	CHOOSECARDSPLAYER = 51,
 	
 	SWAPCARDS = 100,
 	
@@ -30,3 +31,4 @@ enum logic_card_tags { #NEVER CHANGE ORDER
 	EARNINCOME = 151,
 	}
 @export var logic_tags: Array[logic_card_tags]
+@export var logic_amount1: int = 0

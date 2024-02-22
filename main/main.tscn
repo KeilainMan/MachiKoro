@@ -110,7 +110,7 @@ scroll_following = true
 layout_mode = 2
 placeholder_text = "Insert  Command"
 
-[node name="PlayerSelectionLayer" type="CanvasLayer" parent="."]
+[node name="SelectionLayer" type="CanvasLayer" parent="."]
 layer = 2
 
 [connection signal="item_selected" from="MainMenuLayer/MainCenterRect/VBoxContainer/PlayerCountButton" to="." method="_on_player_count_button_item_selected"]
