@@ -15,12 +15,14 @@ func _ready():
 
 func load_player_cards(cards: Array[CardBase]) -> CardBase:
 	for card in cards:
-		var new_card: CardBase = card.duplicate(8)
-		add_child(new_card)
-		new_card.card_selected.connect(_on_card_selected.bind())
-		new_card.set("current_mode", 2)
-		new_card.set("original_card", card)
-		add_new_card(new_card)
+		print("CardTyp: ", card.card_type)
+		if card.card_type == "IncomeCard":
+			var new_card: CardBase = card.duplicate(8)
+			add_child(new_card)
+			new_card.card_selected.connect(_on_card_selected.bind())
+			new_card.set("current_mode", 2)
+			new_card.set("original_card", card)
+			add_new_card(new_card)
 	
 	var target_card: CardBase = await card_selected
 	return target_card.get("original_card")
