@@ -1,0 +1,7 @@
+[gd_scene load_steps=3 format=3 uid="uid://4vypmwiyw3dh"]
+
+[ext_resource type="PackedScene" uid="uid://dn6d6o7px0ku6" path="res://card_scenes/card_base.tscn" id="1_1ooma"]
+[ext_resource type="Resource" uid="uid://0xcojbqllp" path="res://card_resources/tv_channel.tres" id="2_3obnk"]
+
+[node name="CardBase" instance=ExtResource("1_1ooma")]
+card_resource = ExtResource("2_3obnk")

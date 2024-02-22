@@ -16,6 +16,9 @@ var card_income_numbers: Array[int]
 var card_cost: int
 var card_income_amount: int
 var card_tags: Array
+var logic_tags: Array:
+	get:
+		return logic_tags
 
 var card_image_texture: Texture
 var card_ownership: PlayerBase:
@@ -30,7 +33,8 @@ var card_ownership: PlayerBase:
 ##CARD IN GAME MODES##
 enum card_modes {
 	SHOP,
-	PLAYEROWNED
+	PLAYEROWNED,
+	CARDSELECTION
 }
 var current_mode: int:
 	set(new_mode):
@@ -41,8 +45,17 @@ var current_mode: int:
 	get:
 		return current_mode
 
+##LATER DEPENDENCIES##
+var original_card: CardBase = null:
+	set(card):
+		original_card = card
+	get:
+		return original_card
 
 
+##INTERNAL SIGNALS##
+
+signal card_selected() #connects to card_selection
 
 
 ################################################################################
@@ -66,6 +79,7 @@ func set_card_data() -> void:
 	card_image_texture = card_resource.card_image
 	card_income_amount = card_resource.income_amount
 	card_tags = card_resource.card_tags
+	logic_tags = card_resource.logic_tags
 	set("card_ownership", card_resource.card_ownership)
 
 
@@ -79,4 +93,6 @@ func _on_action_button_pressed() -> void:
 			Events.emit_signal("card_wants_to_be_bought", self)
 		card_modes.PLAYEROWNED:
 			pass
+		card_modes.CARDSELECTION:
+			emit_signal("card_selected", self)
 

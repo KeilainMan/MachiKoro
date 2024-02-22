@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="CardBaseResource" load_steps=3 format=3 uid="uid://0xcojbqllp"]
+
+[ext_resource type="Script" path="res://card_resources/card_base_resource.gd" id="1_es1gg"]
+[ext_resource type="Texture2D" uid="uid://c5vsuypa6jdb5" path="res://assets/all_cards/tv_channel.png" id="1_sqkvf"]
+
+[resource]
+script = ExtResource("1_es1gg")
+card_name = "tv_channel"
+card_type = "SpecialCard"
+card_income_catergory = "Player"
+card_income_numbers = Array[int]([6])
+card_cost = 7
+card_tags = Array[int]([5])
+income_amount = 5
+card_image = ExtResource("1_sqkvf")
+logic_tags = Array[int]([0, 150])

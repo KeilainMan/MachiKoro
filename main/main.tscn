@@ -110,5 +110,8 @@ scroll_following = true
 layout_mode = 2
 placeholder_text = "Insert  Command"
 
+[node name="SelectionLayer" type="CanvasLayer" parent="."]
+layer = 2
+
 [connection signal="item_selected" from="MainMenuLayer/MainCenterRect/VBoxContainer/PlayerCountButton" to="." method="_on_player_count_button_item_selected"]
 [connection signal="text_submitted" from="Helper/Panel/VBoxContainer/TextInputLine" to="Helper" method="_on_text_input_line_text_submitted"]
