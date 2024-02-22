@@ -219,9 +219,9 @@ func process_transaction(card_cost: int) -> void:
 	current_player.decrease_owned_money(card_cost)
 
 
-func transfer_card_ownership(card: CardBase, current_player: PlayerBase) -> void:
-	current_player.add_card_to_player(card)
-	card.card_ownership = current_player
+func transfer_card_ownership(card: CardBase, player: PlayerBase) -> void:
+	player.add_card_to_player(card)
+	card.card_ownership = player
 	Events.emit_signal("card_was_bought", card)
 
 

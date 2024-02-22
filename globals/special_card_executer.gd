@@ -41,17 +41,19 @@ func play_special_card(card: CardBase) -> void:
 	Events.emit_signal("random_message", str("SpecialCard" + "[color=#FF3A20]" + card.card_name + "[/color]" + "will be executed!"))
 	var tags: Array[int] = card.get("logic_tags")
 	var targets: Array[PlayerBase]
+	var target_card_enemy: CardBase
+	var target_card_player: CardBase
 	
 	for tag in tags:
 		if tag == tags[0]:
 			targets = await play_target_tag(tags[0])
 		match tag:
 			50: #CHOOSECARDSENEMY
-				choose_card(targets[0])
+				target_card_enemy = await choose_card(targets[0])
 			51: #CHOOSECARDPLAYER
-				pass
+				target_card_player = await choose_card(current_player)
 			100: #SWAPCARDS
-				pass
+				swap_cards(target_card_enemy, target_card_player, targets[0])
 			150: #STEALINCOME
 				steal_income(targets, current_player, card.card_income_amount)
 			151: #EARNINCOME
@@ -62,11 +64,11 @@ func play_special_card(card: CardBase) -> void:
 ## TARGET SELECTOR/ PREPARATION TAGS < 50 ##
 
 
-func choose_card(target: PlayerBase) -> void:
+func choose_card(target: PlayerBase) -> CardBase:
 	var new_card_selection: MarginContainer = card_selection.instantiate()
 	get_tree().get_root().get_node("Main").get_node("SelectionLayer").add_child(new_card_selection)
 	var target_card: CardBase =  await new_card_selection.load_player_cards(target.get("owned_cards"))
-	print("TARGET: ", target_card)
+	return target_card
 	
 	
 func play_target_tag(tag: int):
@@ -98,6 +100,17 @@ func choose_all_enemys_as_target(player: PlayerBase, players: Array[PlayerBase])
 ## EXECUTE FUNCTIONS ID > 50 ##
 
 
+##100
+func swap_cards(card_enemy: CardBase, card_player: CardBase, target_player: PlayerBase) -> void:
+	target_player.add_card_to_player(card_player)
+	target_player.remove_card_from_player(card_enemy)
+	card_player.set("card_ownership", target_player)
+	
+	current_player.add_card_to_player(card_enemy)
+	card_enemy.set("card_ownership", current_player)
+	current_player.remove_card_from_player(card_player)
+
+
 ##150
 func steal_income(targets: Array[PlayerBase], player: PlayerBase, amount: int) -> void:
 	for target in targets:
@@ -108,4 +121,12 @@ func steal_income(targets: Array[PlayerBase], player: PlayerBase, amount: int) -
 ##151
 func earn_income(player: PlayerBase, amount: int) -> void:
 	player.increase_owned_money(amount)
-		
+
+
+####################################################################################################
+## Helpers ##
+
+func delete_card(player: PlayerBase, card: CardBase) -> void:
+	pass
+
+

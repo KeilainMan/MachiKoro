@@ -46,12 +46,11 @@ var current_mode: int:
 		return current_mode
 
 ##LATER DEPENDENCIES##
-#var card_selection: MarginContainer = null:
-#	set(new_interface):
-#		card_selection = new_interface
-#		card_selected.connect(Callable(card_selection, "_on_card_selected"))
-#	get:
-#		return card_selection
+var original_card: CardBase = null:
+	set(card):
+		original_card = card
+	get:
+		return original_card
 
 
 ##INTERNAL SIGNALS##

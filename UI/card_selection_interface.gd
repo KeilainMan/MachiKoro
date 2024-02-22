@@ -19,10 +19,11 @@ func load_player_cards(cards: Array[CardBase]) -> CardBase:
 		add_child(new_card)
 		new_card.card_selected.connect(_on_card_selected.bind())
 		new_card.set("current_mode", 2)
+		new_card.set("original_card", card)
 		add_new_card(new_card)
 	
 	var target_card: CardBase = await card_selected
-	return target_card
+	return target_card.get("original_card")
 
 
 ####################################################################################################

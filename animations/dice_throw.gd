@@ -40,8 +40,8 @@ func calculate_new_timer(counter: int) -> float:
 	if counter < 16:
 		return 0.07
 	else:
-		var timer: float = clamp(0.07 + ((counter - 15) * 0.05), 0.07, 0.5)
-		return timer
+		var new_timer: float = clamp(0.07 + ((counter - 15) * 0.05), 0.07, 0.5)
+		return new_timer
 
 
 func emit_particles() -> void:
