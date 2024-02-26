@@ -7,7 +7,7 @@ var owned_cards: Array[CardBase] = []:
 		owned_cards = new_array
 	get:
 		return owned_cards.duplicate(true)
-var owned_money: int = 50:
+var owned_money: int = 100:
 	set(new_money_amount):
 		owned_money = clamp(new_money_amount, 0, 1000)
 		#Signals.emit_signal("update_gold")
@@ -21,21 +21,25 @@ var player_id: int = 0:
 var bought_train_station: bool = false:
 	set(value):
 		bought_train_station = value
+		check_eng_game_conditions()
 	get:
 		return bought_train_station 
 var bought_amusement_park: bool = false:
 	set(value):
 		bought_amusement_park = value
+		check_eng_game_conditions()
 	get:
 		return bought_amusement_park
 var bought_mall: bool = false:
 	set(value):
 		bought_mall = value
+		check_eng_game_conditions()
 	get:
 		return bought_mall  
 var bought_radio_station: bool = false:
 	set(value):
 		bought_radio_station = value
+		check_eng_game_conditions()
 	get:
 		return bought_radio_station   
 
@@ -71,3 +75,16 @@ func add_card_to_player(new_card: CardBase) -> void:
 func remove_card_from_player(target_card: CardBase) -> void:
 	owned_cards.erase(target_card)
 	Events.emit_signal("player_card_removed", self, target_card.card_name)
+
+
+
+####################################################################################################
+## END GAME ##
+
+
+func check_eng_game_conditions() -> void:
+	if 	bought_amusement_park == true and \
+		bought_mall == true and \
+		bought_radio_station == true and \
+		bought_train_station == true:
+		Events.emit_signal("game_finished", self)

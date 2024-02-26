@@ -7,6 +7,7 @@ extends Node
 	preload("res://card_scenes/farm.tscn")
 ]
 @onready var dice_throw: PackedScene = preload("res://animations/dice_throw.tscn")
+@onready var end_game_screen: PackedScene = preload("res://main/end_game_screen.tscn")
 
 ##NODES##
 @onready var main_menu_layer: CanvasLayer = $MainMenuLayer
@@ -34,6 +35,7 @@ enum game_states {
 
 
 func _ready():
+	Events.game_finished.connect(_on_game_finished.bind())
 	GameManager.set("game_board", self)
 
 ################################################################################
@@ -58,8 +60,8 @@ func instance_players(number_of_players: int) -> void:
 		new_player.add_to_group("player")
 		add_child(new_player)
 		players.append(new_player)
-		new_player.set("player_id", n)
-		new_player.name = "Player" + str(n)
+		new_player.set("player_id", n + 1)
+		new_player.name = "Player" + str(n + 1)
 
 
 func instance_all_cards() -> void:
@@ -137,6 +139,19 @@ func throw_two_dice() -> void:
 	add_child(new_dice2)
 	
 	set("current_gamestate", game_states.DICETHROWPHASE)
+
+
+################################################################################
+##END GAME##
+
+func _on_game_finished(player: PlayerBase) -> void:
+	for child in get_children():
+		print(child, child is CanvasLayer)
+		if child is CanvasLayer:
+			child.visible = false
+	var new_screen: MarginContainer = end_game_screen.instantiate()
+	add_child(new_screen)
+	new_screen.display_winner(player)
 
 
 ################################################################################
