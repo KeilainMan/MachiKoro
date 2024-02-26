@@ -25,13 +25,16 @@ signal player_card_container_toggled() #from PlayerCardContainerButton in Main t
 signal card_wants_to_be_bought() #from a CardBase to GameManager
 signal card_was_bought(card) #from GameManager to PlayerCardsContainer
 
-##TURNORDER SIGNALS
+## TURNORDER SIGNALS
 signal turn_finished() #from TurnEndButton to GameManager
 signal new_turn_starts() #from GameManager to UI and everything that needs to be refreshed on the new turn
 
-signal amusement_park_triggered(player) #from GameManager to
 
-##HELPER (CONSOLE) SIGNALS
+## END GAME
+signal game_finished(player) #from player to everything else (GameManager/Main)
+
+
+## HELPER (CONSOLE) SIGNALS
 signal random_message(text) #from X to Main/Helper(Console)
 
 
