@@ -41,7 +41,9 @@ seamless_blend_skirt = 0.171
 noise = SubResource("FastNoiseLite_h8ia8")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_bv7oh"]
+resource_local_to_scene = true
 shader = ExtResource("2_t1m30")
+shader_parameter/turn_bool = true
 shader_parameter/scroll = Vector2(0, 0.5)
 shader_parameter/blur = 7.0
 shader_parameter/intensity_factor = 0.845
@@ -60,7 +62,7 @@ custom_minimum_size = Vector2(89, 89)
 layout_mode = 2
 texture = ExtResource("1_dgd3f")
 
-[node name="PlayerPic2" type="NinePatchRect" parent="PlayerPic"]
+[node name="ShaderPic" type="NinePatchRect" parent="PlayerPic"]
 material = SubResource("ShaderMaterial_bv7oh")
 custom_minimum_size = Vector2(89, 89)
 layout_mode = 2

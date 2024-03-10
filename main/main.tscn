@@ -115,6 +115,7 @@ placeholder_text = "Insert  Command"
 layer = 2
 
 [node name="PlayerHUD" parent="." instance=ExtResource("7_p7n1h")]
+visible = false
 
 [connection signal="item_selected" from="MainMenuLayer/MainCenterRect/VBoxContainer/PlayerCountButton" to="." method="_on_player_count_button_item_selected"]
 [connection signal="text_submitted" from="Helper/Panel/VBoxContainer/TextInputLine" to="Helper" method="_on_text_input_line_text_submitted"]

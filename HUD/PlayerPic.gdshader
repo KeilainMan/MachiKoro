@@ -1,5 +1,6 @@
 shader_type canvas_item;
 
+uniform bool turn_bool;
 uniform sampler2D noise_pattern: repeat_enable;
 uniform sampler2D alpha_noise_pattern: repeat_enable;
 uniform sampler2D flame_gradient;
@@ -24,6 +25,7 @@ vec2 rotateUV(vec2 uv, vec2 pivot, float rotation) {
 
 
 void fragment() {
+	if (turn_bool){
 	vec2 myUv = rotateUV(UV,vec2(0.5,0.5), radians(90));
 	float tex_alpha = texture(TEXTURE, UV).a;
 	float pattern_intensity = texture(noise_pattern, UV + TIME * scroll).r;
@@ -31,6 +33,7 @@ void fragment() {
 	float intensity = pattern_intensity * intensity_factor * alpha;
 	vec4 flame_color = texture(flame_gradient, vec2(intensity));
 	COLOR = vec4(flame_color.rgb - vec3(0,0,0), tex_alpha * alpha);
+	}
 
 	//COLOR = texture(flame_gradient, vec2(intensity));
 }

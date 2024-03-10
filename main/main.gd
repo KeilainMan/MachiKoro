@@ -13,6 +13,7 @@ extends Node
 @onready var main_menu_layer: CanvasLayer = $MainMenuLayer
 @onready var shop_container: MarginContainer = $ShopDisplayLayer/ShopContainer
 @onready var turn_process_layer: CanvasLayer = $TurnProcessLayer
+@onready var player_hud: MarginContainer = $PlayerHUD
 
 
 var player_count: int = 2:
@@ -99,6 +100,7 @@ func _on_player_count_button_item_selected(index: int) -> void:
 
 func start_game() -> void:
 	turn_process_layer.show()
+	player_hud.show()
 	change_turn_to_next_player(null)
 
 
