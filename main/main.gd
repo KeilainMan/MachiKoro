@@ -22,7 +22,7 @@ var player_count: int = 2:
 var players: Array[PlayerBase]
 
 
-var current_gamestate: = game_states.IDLE:
+var current_gamestate: int = game_states.IDLE:
 	set(new_state):
 		current_gamestate = new_state
 enum game_states {

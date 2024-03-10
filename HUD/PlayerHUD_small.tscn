@@ -1,0 +1,134 @@
+[gd_scene load_steps=17 format=3 uid="uid://ccfbnt2g138fw"]
+
+[ext_resource type="Texture2D" uid="uid://rl4socbwlnim" path="res://assets/player_icons/blue_player_bg146x146.png" id="1_dgd3f"]
+[ext_resource type="Script" path="res://HUD/PlayerHUD_small.gd" id="1_stvd6"]
+[ext_resource type="FontFile" uid="uid://c8lg0fnyu6ixs" path="res://assets/fonts/Roboto/Roboto-Black.ttf" id="2_f5spl"]
+[ext_resource type="Shader" path="res://HUD/PlayerPic.gdshader" id="2_t1m30"]
+[ext_resource type="Texture2D" uid="uid://bud5vl67kwhgj" path="res://assets/ui_backgrounds/money_bg.png" id="3_w4q48"]
+[ext_resource type="Texture2D" uid="uid://7uoso1xkb7oo" path="res://assets/all_cards/train_station_back.png" id="4_8dm50"]
+[ext_resource type="Texture2D" uid="uid://b3nhiraktlbwe" path="res://assets/ui_backgrounds/card_bg.png" id="6_efrpa"]
+
+[sub_resource type="Gradient" id="Gradient_vbs7e"]
+offsets = PackedFloat32Array(0, 0.576219)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0.0304878)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_17w5v"]
+gradient = SubResource("Gradient_vbs7e")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_lebil"]
+seed = 1
+frequency = 0.0045
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_bp8vg"]
+seamless = true
+seamless_blend_skirt = 0.378
+noise = SubResource("FastNoiseLite_lebil")
+
+[sub_resource type="Gradient" id="Gradient_l2upf"]
+offsets = PackedFloat32Array(0, 0.338415, 0.530488, 0.722561, 1)
+colors = PackedColorArray(0.768627, 0.0705882, 0.0705882, 1, 0.815686, 0.847059, 0, 1, 0.874439, 0.432121, 0, 1, 0.878431, 0.403922, 0, 1, 0.952941, 0.952941, 0.129412, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_63jx6"]
+gradient = SubResource("Gradient_l2upf")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_h8ia8"]
+seed = 10
+frequency = 0.0055
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_cj8m6"]
+seamless = true
+seamless_blend_skirt = 0.171
+noise = SubResource("FastNoiseLite_h8ia8")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_bv7oh"]
+shader = ExtResource("2_t1m30")
+shader_parameter/scroll = Vector2(0, 0.5)
+shader_parameter/blur = 7.0
+shader_parameter/intensity_factor = 0.845
+shader_parameter/noise_pattern = SubResource("NoiseTexture2D_cj8m6")
+shader_parameter/alpha_noise_pattern = SubResource("NoiseTexture2D_bp8vg")
+shader_parameter/flame_gradient = SubResource("GradientTexture2D_63jx6")
+shader_parameter/alpha_gradient = SubResource("GradientTexture1D_17w5v")
+
+[node name="PlayerHUDSmall" type="HBoxContainer"]
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_stvd6")
+
+[node name="PlayerPic" type="NinePatchRect" parent="."]
+custom_minimum_size = Vector2(89, 89)
+layout_mode = 2
+texture = ExtResource("1_dgd3f")
+
+[node name="PlayerPic2" type="NinePatchRect" parent="PlayerPic"]
+material = SubResource("ShaderMaterial_bv7oh")
+custom_minimum_size = Vector2(89, 89)
+layout_mode = 2
+offset_right = 89.0
+offset_bottom = 98.0
+texture = ExtResource("1_dgd3f")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="MoneyRect" type="NinePatchRect" parent="VBoxContainer"]
+custom_minimum_size = Vector2(49, 26)
+layout_mode = 2
+texture = ExtResource("3_w4q48")
+
+[node name="MoneyLabel" type="Label" parent="VBoxContainer/MoneyRect"]
+custom_minimum_size = Vector2(49, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 7
+theme_override_constants/shadow_outline_size = 0
+theme_override_fonts/font = ExtResource("2_f5spl")
+theme_override_font_sizes/font_size = 17
+text = "100"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="NinePatchRect" type="NinePatchRect" parent="VBoxContainer"]
+custom_minimum_size = Vector2(49, 68)
+layout_mode = 2
+texture = ExtResource("6_efrpa")
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/NinePatchRect"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_constants/margin_left = 2
+theme_override_constants/margin_top = 2
+theme_override_constants/margin_right = 2
+theme_override_constants/margin_bottom = 2
+
+[node name="GridContainer" type="GridContainer" parent="VBoxContainer/NinePatchRect/MarginContainer"]
+layout_mode = 2
+theme_override_constants/h_separation = 5
+theme_override_constants/v_separation = 4
+columns = 2
+
+[node name="TrainStation" type="NinePatchRect" parent="VBoxContainer/NinePatchRect/MarginContainer/GridContainer"]
+custom_minimum_size = Vector2(20, 30)
+layout_mode = 2
+texture = ExtResource("4_8dm50")
+
+[node name="Mall" type="NinePatchRect" parent="VBoxContainer/NinePatchRect/MarginContainer/GridContainer"]
+custom_minimum_size = Vector2(20, 30)
+layout_mode = 2
+texture = ExtResource("4_8dm50")
+
+[node name="AmusementPark" type="NinePatchRect" parent="VBoxContainer/NinePatchRect/MarginContainer/GridContainer"]
+custom_minimum_size = Vector2(20, 30)
+layout_mode = 2
+texture = ExtResource("4_8dm50")
+
+[node name="RadioTower" type="NinePatchRect" parent="VBoxContainer/NinePatchRect/MarginContainer/GridContainer"]
+custom_minimum_size = Vector2(20, 30)
+layout_mode = 2
+texture = ExtResource("4_8dm50")

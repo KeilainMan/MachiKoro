@@ -1,0 +1,38 @@
+[gd_scene load_steps=6 format=3 uid="uid://bsywbisvyb32h"]
+
+[ext_resource type="PackedScene" uid="uid://ccfbnt2g138fw" path="res://HUD/PlayerHUD_small.tscn" id="1_w5qe7"]
+[ext_resource type="Texture2D" uid="uid://rl4socbwlnim" path="res://assets/player_icons/blue_player_bg146x146.png" id="2_x7mvm"]
+[ext_resource type="Texture2D" uid="uid://ddnvslqhn32uy" path="res://assets/player_icons/green_player_bg146x146.png" id="3_q52tt"]
+[ext_resource type="Texture2D" uid="uid://dha32vvxxtvr0" path="res://assets/player_icons/red_player_bg146x146.png" id="4_t7kwx"]
+[ext_resource type="Texture2D" uid="uid://c0c2hres6jsq4" path="res://assets/player_icons/yelllow_player_bg146x146.png" id="5_ugvsp"]
+
+[node name="PlayerHUD" type="MarginContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -1623.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_bottom = 300
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+theme_override_constants/separation = 25
+
+[node name="HBoxContainer" parent="VBoxContainer" instance=ExtResource("1_w5qe7")]
+layout_mode = 2
+pic = ExtResource("2_x7mvm")
+
+[node name="HBoxContainer2" parent="VBoxContainer" instance=ExtResource("1_w5qe7")]
+layout_mode = 2
+pic = ExtResource("3_q52tt")
+
+[node name="HBoxContainer3" parent="VBoxContainer" instance=ExtResource("1_w5qe7")]
+layout_mode = 2
+pic = ExtResource("4_t7kwx")
+
+[node name="HBoxContainer4" parent="VBoxContainer" instance=ExtResource("1_w5qe7")]
+layout_mode = 2
+pic = ExtResource("5_ugvsp")

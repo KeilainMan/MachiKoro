@@ -1,7 +1,7 @@
 extends MarginContainer
 
 ## DEPENDENCIES ##
-@onready var main_scene: PackedScene = preload("res://main/main.tscn")
+#@onready var main_scene: PackedScene = preload("res://main/main.tscn")
 
 ## NODES ##
 @onready var rich_text_label: RichTextLabel = $VBoxContainer/RichTextLabel
@@ -22,5 +22,5 @@ func _on_quit_button_pressed() -> void:
 	get_tree().quit()
 
 
-func _on_new_game_button_pressed() -> void:
-	get_tree().change_scene_to_packed(main_scene)
+#func _on_new_game_button_pressed() -> void:
+#	get_tree().change_scene_to_packed(main_scene)

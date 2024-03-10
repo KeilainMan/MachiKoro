@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://6my02lombpdw"]
+[gd_scene load_steps=8 format=3 uid="uid://6my02lombpdw"]
 
 [ext_resource type="Script" path="res://main/main.gd" id="1_luafi"]
 [ext_resource type="PackedScene" uid="uid://cr1o71avvkoto" path="res://shop/shop_container.tscn" id="2_4g6ky"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" path="res://main/helper.gd" id="4_35abj"]
 [ext_resource type="PackedScene" uid="uid://bh626akgvrqb2" path="res://UI/player_cards_container.tscn" id="4_e4mq0"]
 [ext_resource type="PackedScene" uid="uid://uml3iyto1cja" path="res://UI/player_cards_container_button.tscn" id="5_m0exr"]
+[ext_resource type="PackedScene" uid="uid://bsywbisvyb32h" path="res://HUD/PlayerHUD.tscn" id="7_p7n1h"]
 
 [node name="Main" type="Node"]
 script = ExtResource("1_luafi")
@@ -112,6 +113,8 @@ placeholder_text = "Insert  Command"
 
 [node name="SelectionLayer" type="CanvasLayer" parent="."]
 layer = 2
+
+[node name="PlayerHUD" parent="." instance=ExtResource("7_p7n1h")]
 
 [connection signal="item_selected" from="MainMenuLayer/MainCenterRect/VBoxContainer/PlayerCountButton" to="." method="_on_player_count_button_item_selected"]
 [connection signal="text_submitted" from="Helper/Panel/VBoxContainer/TextInputLine" to="Helper" method="_on_text_input_line_text_submitted"]
