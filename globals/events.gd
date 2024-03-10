@@ -20,6 +20,7 @@ signal send_dice_throw_result(results) #from DiceThrow to GameManager
 ## UI SIGNALS
 signal toggle_shop() # from TurnProcessMenu to ShopContainer
 signal player_card_container_toggled() #from PlayerCardContainerButton in Main to PlayerCardsContainer
+signal monument_bought(player) #from player to PlayerHUD
 
 ## SHOP SIGNALS
 signal card_wants_to_be_bought() #from a CardBase to GameManager

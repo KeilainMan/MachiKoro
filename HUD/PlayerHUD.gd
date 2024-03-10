@@ -1,5 +1,7 @@
 extends MarginContainer
 
+
+##NODES##
 @onready var v_box_container: VBoxContainer = $VBoxContainer
 
 
@@ -8,6 +10,9 @@ extends MarginContainer
 func _ready() -> void:
 	Events.players_registered.connect(on_players_registered.bind())
 
+
+####################################################################################################
+## APPEARANCE ##
 
 func on_players_registered(players: Array[PlayerBase]) -> void:
 	var player_count: int = players.size()

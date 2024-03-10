@@ -21,25 +21,29 @@ var player_id: int = 0:
 var bought_train_station: bool = false:
 	set(value):
 		bought_train_station = value
-		check_eng_game_conditions()
+		Events.emit_signal("monument_bought", self)
+		check_end_game_conditions()
 	get:
 		return bought_train_station 
 var bought_amusement_park: bool = false:
 	set(value):
 		bought_amusement_park = value
-		check_eng_game_conditions()
+		Events.emit_signal("monument_bought", self)
+		check_end_game_conditions()
 	get:
 		return bought_amusement_park
 var bought_mall: bool = false:
 	set(value):
 		bought_mall = value
-		check_eng_game_conditions()
+		Events.emit_signal("monument_bought", self)
+		check_end_game_conditions()
 	get:
 		return bought_mall  
 var bought_radio_station: bool = false:
 	set(value):
 		bought_radio_station = value
-		check_eng_game_conditions()
+		Events.emit_signal("monument_bought", self)
+		check_end_game_conditions()
 	get:
 		return bought_radio_station   
 
@@ -60,15 +64,8 @@ func decrease_owned_money(decrease_amount: int) -> void:
 
 func add_card_to_player(new_card: CardBase) -> void:
 	var arr: Array = get("owned_cards")
-	print("Arr: ", arr)
 	arr.append(new_card)
-#	if owned_cards.is_empty():
-#		owned_cards[0] = new_card
-#	else:
-#		owned_cards[owned_cards.size() +1] = new_card
 	set("owned_cards", arr)
-	#owned_cards.append_array(arr)
-	print("owned cards: ", owned_cards)
 	Events.emit_signal("player_card_added", self, new_card.card_name)
 
 
@@ -82,7 +79,7 @@ func remove_card_from_player(target_card: CardBase) -> void:
 ## END GAME ##
 
 
-func check_eng_game_conditions() -> void:
+func check_end_game_conditions() -> void:
 	if 	bought_amusement_park == true and \
 		bought_mall == true and \
 		bought_radio_station == true and \
