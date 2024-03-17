@@ -1,10 +1,16 @@
-extends MarginContainer
+extends NinePatchRect
 
 ##DEPENDENCIES##
 @onready var card_stack: PackedScene = preload("res://shop/card_stack.tscn")
+@onready var bg_player1: Texture = preload("res://assets/ui_backgrounds/player1_bg.png")
+@onready var bg_player2: Texture = preload("res://assets/ui_backgrounds/player2_bg.png")
+@onready var bg_player3: Texture = preload("res://assets/ui_backgrounds/player3_bg.png")
+@onready var bg_player4: Texture = preload("res://assets/ui_backgrounds/player4_bg.png")
 
-@onready var h_box_container = $VScrollBar/HBoxContainer
-@onready var margin_container = $VScrollBar/HBoxContainer/MarginContainer
+##NODES##
+#@onready var bg: NinePatchRect = $NinePatchRect
+@onready var h_box_container: HBoxContainer = $PlayerCardContainer/VScrollBar/HBoxContainer
+@onready var margin_container: MarginContainer = $PlayerCardContainer/VScrollBar/HBoxContainer/MarginContainer
 
 
 var viewport_size: Vector2 
@@ -22,16 +28,29 @@ func _ready():
 
 
 func _on_new_current_player(new_current_player: PlayerBase) -> void:
-	update_display(new_current_player)
+	update_card_display(new_current_player)
+	update_background(new_current_player)
 
 
-func update_display(current_player: PlayerBase) -> void:
+func update_card_display(current_player: PlayerBase) -> void:
 	for cardstack in h_box_container.get_children():
 		for card in cardstack.get_children():
 			if card.card_ownership == current_player:
 				card.visible = true
 			else:
 				card.visible = false
+
+
+func update_background(player: PlayerBase) -> void:
+	match player.get("player_id"):
+		1:
+			texture = bg_player1
+		2:
+			texture = bg_player2
+		3:
+			texture = bg_player3
+		4:
+			texture = bg_player4
 
 
 func _on_card_was_bought(card: CardBase) -> void:

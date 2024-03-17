@@ -20,5 +20,5 @@ func _on_pressed() -> void:
 	else:
 		texture_normal = close_img
 		pcc_opened = true
-		tween.tween_property(self, "position", Vector2(13, 648), 0.3)
+		tween.tween_property(self, "position", Vector2(13, 708), 0.3)
 	Events.emit_signal("player_card_container_toggled")
